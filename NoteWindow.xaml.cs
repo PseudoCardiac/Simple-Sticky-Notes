@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Windows.Graphics;
+using Windows.UI.ViewManagement;
 using WinRT.Interop;
 
 namespace SimpleStickyNotes;
@@ -28,6 +29,8 @@ public sealed partial class NoteWindow : Window
     private bool _isAlwaysOnTop;
     private Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController acrylicController;
 
+    private SolidColorBrush brush;
+
     public NoteWindow(
         NoteItem note,
         Func<IReadOnlyList<string>> getFontFamilies,
@@ -44,6 +47,8 @@ public sealed partial class NoteWindow : Window
             Kind = DesktopAcrylicKind.Thin
         };
 
+        brush = new();
+
         InitializeComponent();
         ExtendsContentIntoTitleBar = true;
         BuildContextMenu();
@@ -52,20 +57,7 @@ public sealed partial class NoteWindow : Window
         LoadNote();
         ApplyLockState();
         SetTitleBar(HandleButton);
-        TrySetDesktopAcrylicBackdrop();
         DisableTitleBarDoubleClick();
-    }
-
-    bool TrySetDesktopAcrylicBackdrop()
-    {
-        if (DesktopAcrylicController.IsSupported()) {
-            DesktopAcrylicBackdrop DesktopAcrylicBackdrop = new();
-            this.SystemBackdrop = DesktopAcrylicBackdrop;
-
-            return true; // Succeeded.
-        }
-
-        return false; // DesktopAcrylic is not supported on this system.
     }
 
     public void RefreshFonts()
@@ -84,8 +76,7 @@ public sealed partial class NoteWindow : Window
 
     private void BuildFontMenu(MenuFlyoutSubItem fontMenu)
     {
-        foreach (var fontFamily in _getFontFamilies())
-        {
+        foreach (var fontFamily in _getFontFamilies()) {
             var item = new MenuFlyoutItem { Text = GetFontDisplayName(fontFamily), Tag = fontFamily };
             item.Click += FontMenuItem_Click;
             fontMenu.Items.Add(item);
@@ -104,14 +95,12 @@ public sealed partial class NoteWindow : Window
     private void ApplyFont(string fontFamily, double fontSize)
     {
         var families = _getFontFamilies();
-        if (families.Count > 0 && !families.Contains(fontFamily))
-        {
+        if (families.Count > 0 && !families.Contains(fontFamily)) {
             fontFamily = families[0];
             _note.FontFamily = fontFamily;
         }
 
-        if (string.IsNullOrWhiteSpace(fontFamily))
-        {
+        if (string.IsNullOrWhiteSpace(fontFamily)) {
             fontFamily = NoteItem.DefaultFontFamily;
         }
 
@@ -134,8 +123,7 @@ public sealed partial class NoteWindow : Window
 
     private void HideTitleBar()
     {
-        if (AppWindow.Presenter is OverlappedPresenter presenter)
-        {
+        if (AppWindow.Presenter is OverlappedPresenter presenter) {
             presenter.SetBorderAndTitleBar(true, false);
         }
     }
@@ -149,11 +137,9 @@ public sealed partial class NoteWindow : Window
 
     private void ToggleTitleBar()
     {
-        if ( _isTextLocked )
-        {
+        if (_isTextLocked) {
             this.SetTitleBar(RootGrid);
-        } else
-        {
+        } else {
             this.SetTitleBar(HandleButton);
         }
         DisableTitleBarDoubleClick();
@@ -172,6 +158,8 @@ public sealed partial class NoteWindow : Window
         HandleButton.IsEnabled = !_isTextLocked;
         CloseButton.IsEnabled = !_isTextLocked;
         FontSizeSlider.IsEnabled = !_isTextLocked;
+        TitleBar.Visibility = _isTextLocked ? Visibility.Collapsed : Visibility.Visible;
+        FontSizeSlider.Visibility = _isTextLocked ? Visibility.Collapsed : Visibility.Visible;
         //LockedBodyDragRegion.Visibility = _isTextLocked ? Visibility.Visible : Visibility.Collapsed;
         LockIcon.Glyph = _isTextLocked ? "\uE72E" : "\uE785";
     }
@@ -186,8 +174,7 @@ public sealed partial class NoteWindow : Window
 
     private void LockedDragRegion_PointerPressed(object sender, PointerRoutedEventArgs e)
     {
-        if (_isTextLocked && e.GetCurrentPoint(null).Properties.IsLeftButtonPressed)
-        {
+        if (_isTextLocked && e.GetCurrentPoint(null).Properties.IsLeftButtonPressed) {
             StartWindowDrag();
         }
     }
@@ -201,8 +188,7 @@ public sealed partial class NoteWindow : Window
 
     private void CloseButton_Click(object sender, RoutedEventArgs e)
     {
-        if (!_isTextLocked)
-        {
+        if (!_isTextLocked) {
             Close();
         }
     }
@@ -216,11 +202,9 @@ public sealed partial class NoteWindow : Window
     {
         _isAlwaysOnTop = !_isAlwaysOnTop;
 
-        if (!_isAlwaysOnTop)
-        {
+        if (!_isAlwaysOnTop) {
             PinIcon.Glyph = "\uE718";
-        } else
-        {
+        } else {
             PinIcon.Glyph = "\uE77A";
         }
 
@@ -231,8 +215,7 @@ public sealed partial class NoteWindow : Window
 
     private void FontMenuItem_Click(object sender, RoutedEventArgs e)
     {
-        if (_isTextLocked || sender is not MenuFlyoutItem { Tag: string fontFamily })
-        {
+        if (_isTextLocked || sender is not MenuFlyoutItem { Tag: string fontFamily }) {
             return;
         }
 
@@ -243,8 +226,7 @@ public sealed partial class NoteWindow : Window
 
     private void FontSizeSlider_ValueChanged(object sender, Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
     {
-        if (_isLoading || _isTextLocked)
-        {
+        if (_isLoading || _isTextLocked) {
             return;
         }
 
@@ -255,8 +237,7 @@ public sealed partial class NoteWindow : Window
 
     private void NoteBox_TextChanged(object sender, TextChangedEventArgs e)
     {
-        if (_isLoading || _isTextLocked)
-        {
+        if (_isLoading || _isTextLocked) {
             return;
         }
 
@@ -270,30 +251,9 @@ public sealed partial class NoteWindow : Window
     [DllImport("user32.dll")]
     private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
-    private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+    private void ColorPicker_ColorChanged(ColorPicker sender, ColorChangedEventArgs args)
     {
-
-    }
-
-    private void OpenColorPickerItem_Click(object sender, RoutedEventArgs e)
-    {
-        // Ensure you close the child window before closing the parent window to avoid application crash.
-        var childWindow = new Window()
-        {
-            ExtendsContentIntoTitleBar = true,
-            SystemBackdrop = new MicaBackdrop(),
-            Content = new Page()
-            {
-                Content = new TextBlock()
-                {
-                    Text = "New child window!",
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                }
-            }
-        };
-
-        childWindow.AppWindow.ResizeClient(new SizeInt32(500, 500));
-        childWindow.Activate();
+        brush.Color = args.NewColor;
+        RootGrid.Background = brush;
     }
 }

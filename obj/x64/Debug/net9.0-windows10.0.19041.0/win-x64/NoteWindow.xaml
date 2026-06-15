@@ -1,4 +1,4 @@
-<Window
+﻿<Window
     x:Class="SimpleStickyNotes.NoteWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,14 +7,14 @@
     mc:Ignorable="d"
     Title="">
 
-    <Grid x:Name="RootGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:ConnectionId='2' x:Name="RootGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid x:Name="TitleBar" Grid.Row="0" Background="Transparent" Padding="9 9">
+        <Grid x:ConnectionId='3' x:Name="TitleBar" Grid.Row="0" Background="Transparent" Padding="9 9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -22,7 +22,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button
+            <Button x:ConnectionId='14'
                 x:Name="HandleButton"
                 Grid.Column="0"
                 Width="32"
@@ -30,12 +30,12 @@
                 Padding="0"
                 Background="Transparent"
                 BorderThickness="0">
-                <FontIcon
+                <FontIcon x:ConnectionId='23'
                     x:Name="HandleIcon"
                     Glyph="&#xE7C2;" />
             </Button>
 
-            <Button
+            <Button x:ConnectionId='15'
                 x:Name="PinButton"
                 Grid.Column="1"
                 Width="32"
@@ -43,13 +43,13 @@
                 Padding="0"
                 Background="Transparent"
                 BorderThickness="0"
-                Click="PinButton_Click">
-                <FontIcon
+                                       >
+                <FontIcon x:ConnectionId='22'
                     x:Name="PinIcon"
                     Glyph="&#xE718;" />
             </Button>
             
-            <Button
+            <Button x:ConnectionId='16'
                 x:Name="ColorButton"
                 Grid.Column="2"
                 Width="32"
@@ -57,29 +57,33 @@
                 Padding="0"
                 Background="Transparent"
                 BorderThickness="0">
-                <FontIcon
+                <FontIcon x:ConnectionId='20'
                     x:Name="ColorIcon"
                     Glyph="&#xE790;" />
                 <Button.Flyout>
                     <Flyout ShouldConstrainToRootBounds="False">
-                        <ColorPicker x:Name="ColorPicker"
+                        <ColorPicker x:ConnectionId='21' x:Name="ColorPicker"
                             ColorSpectrumShape="Ring"
                             IsMoreButtonVisible="False"
                             IsColorSliderVisible="True"
                             IsColorChannelTextInputVisible="False"
                             IsHexInputVisible="False"
-                            ColorChanged="ColorPicker_ColorChanged"/>
+                            IsAlphaEnabled="True"
+                            IsAlphaSliderVisible="True"
+                            IsAlphaTextInputVisible="False"
+                                     
+                                                                   />
                     </Flyout>
                 </Button.Flyout>
             </Button>
             
-            <Border
+            <Border x:ConnectionId='17'
                 x:Name="LockedTitleDragRegion"
                 Grid.Column="3"
                 Background="Transparent"
-                PointerPressed="LockedDragRegion_PointerPressed" />
+                                                                 />
 
-            <Button
+            <Button x:ConnectionId='18'
                 x:Name="CloseButton"
                 Grid.Column="4"
                 Width="32"
@@ -87,29 +91,29 @@
                 Padding="0"
                 Background="Transparent"
                 BorderThickness="0"
-                Click="CloseButton_Click">
-                <FontIcon
+                                         >
+                <FontIcon x:ConnectionId='19'
                     x:Name="CloseIcon"
                     Glyph="&#xF78A;" />
             </Button>
         </Grid>
 
         <Grid Grid.Row="1">
-            <TextBox
+            <TextBox x:ConnectionId='8'
                 x:Name="NoteBox"
                 AcceptsReturn="True"
                 BorderThickness="0"
                 FontSize="18"
                 Padding="36, 36, 18, 0"
-                TextChanged="NoteBox_TextChanged"
+                                                 
                 TextWrapping="Wrap"
                 VerticalAlignment="Stretch"
                 VerticalContentAlignment="Top">
                 <TextBox.ContextFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Click="OpenListMenuItem_Click" Text="노트 목록 열기" />
+                        <MenuFlyoutItem x:ConnectionId='12'                                Text="노트 목록 열기" />
                         <MenuFlyoutSeparator />
-                        <MenuFlyoutSubItem x:Name="FontMenu" Text="글꼴" />
+                        <MenuFlyoutSubItem x:ConnectionId='13' x:Name="FontMenu" Text="글꼴" />
                     </MenuFlyout>
                 </TextBox.ContextFlyout>
                 <TextBox.Resources>
@@ -124,27 +128,27 @@
                 </TextBox.Style>
             </TextBox>
 
-            <Border
+            <Border x:ConnectionId='9'
                 x:Name="LockedBodyDragRegion"
                 Background="Transparent"
                 Visibility="Collapsed">
                 <Border.ContextFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Click="OpenListMenuItem_Click" Text="Open note list" />
+                        <MenuFlyoutItem x:ConnectionId='10'                                Text="Open note list" />
                         <MenuFlyoutSeparator />
-                        <MenuFlyoutSubItem x:Name="LockedFontMenu" Text="Font" />
+                        <MenuFlyoutSubItem x:ConnectionId='11' x:Name="LockedFontMenu" Text="Font" />
                     </MenuFlyout>
                 </Border.ContextFlyout>
             </Border>
         </Grid>
 
-        <Grid Grid.Row="2" x:Name="SliderAndLockGrid" Background="Transparent" Padding="9 9">
+        <Grid x:ConnectionId='4' Grid.Row="2" x:Name="SliderAndLockGrid" Background="Transparent" Padding="9 9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
         
-            <Slider
+            <Slider x:ConnectionId='5'
                 x:Name="FontSizeSlider"
                 Grid.Column="0"
                 Margin="12,0"
@@ -152,10 +156,10 @@
                 Maximum="72"
                 SmallChange="1"
                 StepFrequency="1"
-                ValueChanged="FontSizeSlider_ValueChanged"
+                                                          
                 VerticalAlignment="Center" />
 
-            <Button
+            <Button x:ConnectionId='6'
                 x:Name="LockButton"
                 Grid.Column="1"
                 Width="32"
@@ -163,11 +167,12 @@
                 Padding="0"
                 Background="Transparent"
                 BorderThickness="0"
-                Click="LockButton_Click">
-                <FontIcon
+                                        >
+                <FontIcon x:ConnectionId='7'
                     x:Name="LockIcon"
                     Glyph="&#xE72E;" />
             </Button>
         </Grid>
     </Grid>
 </Window>
+
