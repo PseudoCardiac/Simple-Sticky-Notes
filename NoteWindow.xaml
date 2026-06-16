@@ -7,7 +7,7 @@
     mc:Ignorable="d"
     Title="">
 
-    <Grid x:Name="RootGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="RootGrid" Background="#EBC91E">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -92,8 +92,7 @@
             <Border
                 x:Name="LockedTitleDragRegion"
                 Grid.Column="3"
-                Background="Transparent"
-                PointerPressed="LockedDragRegion_PointerPressed" />
+                Background="Transparent"/>
 
             <Button
                 x:Name="CloseButton"

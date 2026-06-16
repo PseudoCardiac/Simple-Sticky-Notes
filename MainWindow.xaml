@@ -6,12 +6,69 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Title="Simple Sticky Notes">
-    
-    <Window.SystemBackdrop>
-        <DesktopAcrylicBackdrop/>
-    </Window.SystemBackdrop>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="TitleBar" Grid.Row="0" Background="Transparent" Padding="9 9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border
+                x:Name="LockedTitleDragRegion"
+                Grid.Column="0"/>
+
+            <Button
+                x:Name="CloseButton"
+                Grid.Column="1"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                Foreground="#1A1A1A"
+                BorderThickness="0"
+                Click="CloseButton_Click">
+                <FontIcon
+                    x:Name="CloseIcon"
+                    Glyph="&#xF78A;" />
+            </Button>
+        </Grid>
+        
+        <ListView
+            x:Name="NotesList"
+            Grid.Row="1"
+            IsItemClickEnabled="True"
+            ItemClick="NotesList_ItemClick"
+            Padding="8"
+            SelectionMode="None"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:NoteItem" xmlns:local="using:SimpleStickyNotes">
+                    <StackPanel
+                            Orientation="Vertical"
+                            Padding="16">
+                        <Border Background="{x:Bind BackgroundColor, Mode=OneWay}" CornerRadius="4">
+                            <TextBlock
+                                Foreground="{x:Bind TextColor, Mode=OneWay}"
+                                FontSize="18"
+                                MaxLines="2"
+                                Padding="16"
+                                Margin="16"
+                                Text="{x:Bind Preview, Mode=OneWay}"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="Wrap" />
+                        </Border>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
         <Grid.ContextFlyout>
             <MenuFlyout>
                 <MenuFlyoutItem Click="NewNoteButton_Click" Text="New note" />
@@ -21,25 +78,6 @@
                 <MenuFlyoutSubItem x:Name="RemoveFontMenu" Text="Remove font" />
             </MenuFlyout>
         </Grid.ContextFlyout>
-
-        <ListView
-            x:Name="NotesList"
-            IsItemClickEnabled="True"
-            ItemClick="NotesList_ItemClick"
-            Padding="8"
-            SelectionMode="None">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:NoteItem" xmlns:local="using:SimpleStickyNotes">
-                    <Grid Padding="12" MinHeight="58">
-                        <TextBlock
-                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                            MaxLines="2"
-                            Text="{x:Bind Preview, Mode=OneWay}"
-                            TextTrimming="CharacterEllipsis"
-                            TextWrapping="Wrap" />
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
     </Grid>
+
 </Window>

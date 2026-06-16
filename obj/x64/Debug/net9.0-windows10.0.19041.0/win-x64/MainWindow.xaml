@@ -6,41 +6,80 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Title="Simple Sticky Notes">
-    
-    <Window.SystemBackdrop>
-        <DesktopAcrylicBackdrop/>
-    </Window.SystemBackdrop>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.ContextFlyout>
-            <MenuFlyout>
-                <MenuFlyoutItem x:ConnectionId='2'                             Text="New note" />
-                <MenuFlyoutSeparator />
-                <MenuFlyoutItem x:ConnectionId='3'                                     Text="Add font family" />
-                <MenuFlyoutItem x:ConnectionId='4'                                       Text="Import local font" />
-                <MenuFlyoutSubItem x:ConnectionId='5' x:Name="RemoveFontMenu" Text="Remove font" />
-            </MenuFlyout>
-        </Grid.ContextFlyout>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <ListView x:ConnectionId='6'
+        <Grid x:ConnectionId='2' x:Name="TitleBar" Grid.Row="0" Background="Transparent" Padding="9 9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border x:ConnectionId='8'
+                x:Name="LockedTitleDragRegion"
+                Background="Red"
+                Grid.Column="0"/>
+
+            <Button x:ConnectionId='9'
+                x:Name="CloseButton"
+                Grid.Column="1"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                Foreground="#1A1A1A"
+                BorderThickness="0"
+                                         >
+                <FontIcon x:ConnectionId='10'
+                    x:Name="CloseIcon"
+                    Glyph="&#xF78A;" />
+            </Button>
+        </Grid>
+        
+        <ListView x:ConnectionId='3'
             x:Name="NotesList"
+            Grid.Row="1"
             IsItemClickEnabled="True"
                                            
             Padding="8"
-            SelectionMode="None">
+            SelectionMode="None"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListView.ItemTemplate>
                 <DataTemplate                             xmlns:local="using:SimpleStickyNotes">
-                    <Grid x:ConnectionId='8' Padding="12" MinHeight="58">
-                        <TextBlock x:ConnectionId='9'
-                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                            MaxLines="2"
-                                                                
-                            TextTrimming="CharacterEllipsis"
-                            TextWrapping="Wrap" />
-                    </Grid>
+                    <StackPanel x:ConnectionId='5'
+                            Orientation="Vertical"
+                            Padding="16">
+                        <Border x:ConnectionId='6'                                                    CornerRadius="4">
+                            <TextBlock x:ConnectionId='7'
+                                                                            
+                                FontSize="18"
+                                MaxLines="2"
+                                Padding="16"
+                                Margin="16"
+                                                                    
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="Wrap" />
+                        </Border>
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        
+        <Grid.ContextFlyout>
+            <MenuFlyout>
+                <MenuFlyoutItem x:ConnectionId='11'                             Text="New note" />
+                <MenuFlyoutSeparator />
+                <MenuFlyoutItem x:ConnectionId='12'                                     Text="Add font family" />
+                <MenuFlyoutItem x:ConnectionId='13'                                       Text="Import local font" />
+                <MenuFlyoutSubItem x:ConnectionId='14' x:Name="RemoveFontMenu" Text="Remove font" />
+            </MenuFlyout>
+        </Grid.ContextFlyout>
     </Grid>
+
 </Window>
 

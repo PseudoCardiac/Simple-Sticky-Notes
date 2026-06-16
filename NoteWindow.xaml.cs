@@ -1,4 +1,3 @@
-using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -10,7 +9,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Windows.Graphics;
 using Windows.UI;
-using Windows.UI.ViewManagement;
 using WinRT.Interop;
 
 namespace SimpleStickyNotes;
@@ -290,7 +288,7 @@ public sealed partial class NoteWindow : Window
         backgroundBrush.Color = args.NewColor;
         RootGrid.Background = backgroundBrush;
 
-        _note.BackgroundColor = backgroundBrush.Color.ToString() ?? "EBC91E";
+        _note.BackgroundColor = backgroundBrush.Color.ToString() ?? "#EBC91E";
         _saveNotes();
 
         bool isLight = IsLight(backgroundBrush.Color.ToString());
@@ -309,9 +307,8 @@ public sealed partial class NoteWindow : Window
     private void SetTextColor(bool isBlack)
     {
         Color textColor = isBlack ? BLACK : WHITE;
-
-        //RootGridFontIconStyleSetter.Value = textColor;
         textBrush.Color = textColor;
+
         NoteBox.Foreground = textBrush;
         TextColor1.Color = textColor;
         TextColor2.Color = textColor;

@@ -2,7 +2,7 @@ using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,10 +17,16 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using WinRT.Interop;
 
+using System.Runtime.InteropServices;
+using Windows.UI;
+
 namespace SimpleStickyNotes;
 
 public sealed partial class MainWindow : Window
 {
+    private const int WmNclButtonDown = 0x00A1;
+    private const int HtCaption = 0x0002;
+
     private static readonly string SettingsDirectory =
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SimpleStickyNotes");
 
@@ -40,9 +46,17 @@ public sealed partial class MainWindow : Window
         LoadSettings();
         LoadNotes();
         RebuildRemoveFontMenu();
+        ExtendsContentIntoTitleBar = true;
+        HideTitleBar();
+        SetTitleBar(TitleBar);
         NotesList.ItemsSource = _notes;
     }
-
+    private void HideTitleBar()
+    {
+        if (AppWindow.Presenter is OverlappedPresenter presenter) {
+            presenter.SetBorderAndTitleBar(true, false);
+        }
+    }
     public void ShowListWindow()
     {
         Activate();
@@ -283,6 +297,11 @@ public sealed partial class MainWindow : Window
         }
     }
 
+    private void CloseButton_Click(object sender, RoutedEventArgs e)
+    {
+        Close();
+    }
+
     private sealed record AppSettings(string[] FontFamilies, string DefaultFontFamily)
     {
         public static AppSettings Default { get; } = new(
@@ -308,7 +327,7 @@ public sealed class NoteItem : INotifyPropertyChanged
     private string _backgroundColor;
 
     public NoteItem()
-        : this(string.Empty, "Segoe UI", 24, "EBC91E")
+        : this(string.Empty, "Segoe UI", 24, "#EBC91E")
     {
     }
 
@@ -392,6 +411,40 @@ public sealed class NoteItem : INotifyPropertyChanged
             var preview = Text.Replace(Environment.NewLine, " ").Trim();
             return string.IsNullOrWhiteSpace(preview) ? "No text" : preview;
         }
+    }
+
+    public string TextColor
+    {
+        get
+        {
+            return IsLight(BackgroundColor) ? "#191919" : "#FFFFFF";
+        }
+    }
+
+    private static byte[] HexToBytes(string hex)
+    {
+        hex = hex.TrimStart('#');
+
+        byte r, g, b, a;
+
+        if (hex.Length == 8) {
+            a = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+            r = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+            g = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+            b = byte.Parse(hex.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
+        } else {
+            a = 255; // Default alpha value
+            r = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+            g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+            b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+        }
+        return [r, g, b, a];
+    }
+
+    private static bool IsLight(string color)
+    {
+        byte[] bytes = HexToBytes(color);
+        return 0.2126 * (int) bytes[0] + 0.7152 * (int) bytes[1] + 0.0722 * (int) bytes[2] > 128;
     }
 
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
