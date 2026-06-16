@@ -402,11 +402,11 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
                 userType.AddMemberName("IsColorSliderVisible");
                 userType.AddMemberName("IsColorChannelTextInputVisible");
                 userType.AddMemberName("IsHexInputVisible");
+                userType.AddMemberName("Color");
+                userType.AddMemberName("ColorSpectrumComponents");
                 userType.AddMemberName("IsAlphaEnabled");
                 userType.AddMemberName("IsAlphaSliderVisible");
                 userType.AddMemberName("IsAlphaTextInputVisible");
-                userType.AddMemberName("Color");
-                userType.AddMemberName("ColorSpectrumComponents");
                 userType.AddMemberName("IsColorPreviewVisible");
                 userType.AddMemberName("IsColorSpectrumVisible");
                 userType.AddMemberName("MaxHue");
@@ -631,55 +631,55 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
             var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
             that.IsHexInputVisible = (global::System.Boolean)Value;
         }
-        private object get_6_ColorPicker_IsAlphaEnabled(object instance)
-        {
-            var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
-            return that.IsAlphaEnabled;
-        }
-        private void set_6_ColorPicker_IsAlphaEnabled(object instance, object Value)
-        {
-            var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
-            that.IsAlphaEnabled = (global::System.Boolean)Value;
-        }
-        private object get_7_ColorPicker_IsAlphaSliderVisible(object instance)
-        {
-            var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
-            return that.IsAlphaSliderVisible;
-        }
-        private void set_7_ColorPicker_IsAlphaSliderVisible(object instance, object Value)
-        {
-            var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
-            that.IsAlphaSliderVisible = (global::System.Boolean)Value;
-        }
-        private object get_8_ColorPicker_IsAlphaTextInputVisible(object instance)
-        {
-            var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
-            return that.IsAlphaTextInputVisible;
-        }
-        private void set_8_ColorPicker_IsAlphaTextInputVisible(object instance, object Value)
-        {
-            var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
-            that.IsAlphaTextInputVisible = (global::System.Boolean)Value;
-        }
-        private object get_9_ColorPicker_Color(object instance)
+        private object get_6_ColorPicker_Color(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
             return that.Color;
         }
-        private void set_9_ColorPicker_Color(object instance, object Value)
+        private void set_6_ColorPicker_Color(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
             that.Color = (global::Windows.UI.Color)Value;
         }
-        private object get_10_ColorPicker_ColorSpectrumComponents(object instance)
+        private object get_7_ColorPicker_ColorSpectrumComponents(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
             return that.ColorSpectrumComponents;
         }
-        private void set_10_ColorPicker_ColorSpectrumComponents(object instance, object Value)
+        private void set_7_ColorPicker_ColorSpectrumComponents(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
             that.ColorSpectrumComponents = (global::Microsoft.UI.Xaml.Controls.ColorSpectrumComponents)Value;
+        }
+        private object get_8_ColorPicker_IsAlphaEnabled(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
+            return that.IsAlphaEnabled;
+        }
+        private void set_8_ColorPicker_IsAlphaEnabled(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
+            that.IsAlphaEnabled = (global::System.Boolean)Value;
+        }
+        private object get_9_ColorPicker_IsAlphaSliderVisible(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
+            return that.IsAlphaSliderVisible;
+        }
+        private void set_9_ColorPicker_IsAlphaSliderVisible(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
+            that.IsAlphaSliderVisible = (global::System.Boolean)Value;
+        }
+        private object get_10_ColorPicker_IsAlphaTextInputVisible(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
+            return that.IsAlphaTextInputVisible;
+        }
+        private void set_10_ColorPicker_IsAlphaTextInputVisible(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
+            that.IsAlphaTextInputVisible = (global::System.Boolean)Value;
         }
         private object get_11_ColorPicker_IsColorPreviewVisible(object instance)
         {
@@ -881,40 +881,40 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
                 xamlMember.Getter = get_5_ColorPicker_IsHexInputVisible;
                 xamlMember.Setter = set_5_ColorPicker_IsHexInputVisible;
                 break;
-            case "Microsoft.UI.Xaml.Controls.ColorPicker.IsAlphaEnabled":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsAlphaEnabled", "Boolean");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_6_ColorPicker_IsAlphaEnabled;
-                xamlMember.Setter = set_6_ColorPicker_IsAlphaEnabled;
-                break;
-            case "Microsoft.UI.Xaml.Controls.ColorPicker.IsAlphaSliderVisible":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsAlphaSliderVisible", "Boolean");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_7_ColorPicker_IsAlphaSliderVisible;
-                xamlMember.Setter = set_7_ColorPicker_IsAlphaSliderVisible;
-                break;
-            case "Microsoft.UI.Xaml.Controls.ColorPicker.IsAlphaTextInputVisible":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsAlphaTextInputVisible", "Boolean");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_8_ColorPicker_IsAlphaTextInputVisible;
-                xamlMember.Setter = set_8_ColorPicker_IsAlphaTextInputVisible;
-                break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.Color":
                 userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
                 xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Color", "Windows.UI.Color");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_9_ColorPicker_Color;
-                xamlMember.Setter = set_9_ColorPicker_Color;
+                xamlMember.Getter = get_6_ColorPicker_Color;
+                xamlMember.Setter = set_6_ColorPicker_Color;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.ColorSpectrumComponents":
                 userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
                 xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "ColorSpectrumComponents", "Microsoft.UI.Xaml.Controls.ColorSpectrumComponents");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_10_ColorPicker_ColorSpectrumComponents;
-                xamlMember.Setter = set_10_ColorPicker_ColorSpectrumComponents;
+                xamlMember.Getter = get_7_ColorPicker_ColorSpectrumComponents;
+                xamlMember.Setter = set_7_ColorPicker_ColorSpectrumComponents;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ColorPicker.IsAlphaEnabled":
+                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsAlphaEnabled", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_8_ColorPicker_IsAlphaEnabled;
+                xamlMember.Setter = set_8_ColorPicker_IsAlphaEnabled;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ColorPicker.IsAlphaSliderVisible":
+                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsAlphaSliderVisible", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_9_ColorPicker_IsAlphaSliderVisible;
+                xamlMember.Setter = set_9_ColorPicker_IsAlphaSliderVisible;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ColorPicker.IsAlphaTextInputVisible":
+                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsAlphaTextInputVisible", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_10_ColorPicker_IsAlphaTextInputVisible;
+                xamlMember.Setter = set_10_ColorPicker_IsAlphaTextInputVisible;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.IsColorPreviewVisible":
                 userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");

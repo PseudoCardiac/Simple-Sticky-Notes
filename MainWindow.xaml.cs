@@ -2,6 +2,7 @@ using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,13 +25,13 @@ public sealed partial class MainWindow : Window
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SimpleStickyNotes");
 
     private static readonly string NotesPath = Path.Combine(SettingsDirectory, "notes.json");
-    private static readonly string LegacyNotePath = Path.Combine(SettingsDirectory, "note.json");
     private static readonly string SettingsPath = Path.Combine(SettingsDirectory, "settings.json");
     private static readonly string FontsDirectory = Path.Combine(SettingsDirectory, "Fonts");
 
     private readonly ObservableCollection<NoteItem> _notes = [];
     private readonly Dictionary<Guid, NoteWindow> _openNoteWindows = [];
     private readonly ObservableCollection<string> _fontFamilies = [];
+    public string _defaultFontFamily = "Segoe UI";
 
     public MainWindow()
     {
@@ -69,6 +70,11 @@ public sealed partial class MainWindow : Window
                 _fontFamilies.Add(fontFamily);
             }
         }
+
+        if (!string.IsNullOrWhiteSpace(ReadSettings().DefaultFontFamily))
+        {
+            _defaultFontFamily = ReadSettings().DefaultFontFamily;
+        }
     }
 
     private AppSettings ReadSettings()
@@ -93,7 +99,7 @@ public sealed partial class MainWindow : Window
     {
         Directory.CreateDirectory(SettingsDirectory);
 
-        var settings = new AppSettings([.. _fontFamilies]);
+        var settings = new AppSettings([.. _fontFamilies], _defaultFontFamily);
         var json = JsonSerializer.Serialize(settings, new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText(SettingsPath, json);
     }
@@ -108,43 +114,17 @@ public sealed partial class MainWindow : Window
 
     private NoteItem[] ReadNotes()
     {
-        if (File.Exists(NotesPath))
-        {
-            try
-            {
-                var json = File.ReadAllText(NotesPath);
-                return JsonSerializer.Deserialize<NoteItem[]>(json) ?? [];
-            }
-            catch
-            {
-                return [];
-            }
-        }
-
-        var legacyNote = ReadLegacyNote();
-        return legacyNote is null ? [] : [legacyNote];
-    }
-
-    private NoteItem? ReadLegacyNote()
-    {
-        if (!File.Exists(LegacyNotePath))
-        {
-            return null;
-        }
-
         try
         {
-            var json = File.ReadAllText(LegacyNotePath);
-            var state = JsonSerializer.Deserialize<LegacyNoteState>(json);
-            return state is null
-                ? null
-                : new NoteItem(state.Text, state.FontFamily, state.FontSize);
+            var json = File.ReadAllText(NotesPath);
+            return JsonSerializer.Deserialize<NoteItem[]>(json) ?? [];
         }
         catch
         {
-            return null;
+            return [];
         }
     }
+
 
     private void OpenNote(NoteItem note)
     {
@@ -265,7 +245,7 @@ public sealed partial class MainWindow : Window
 
     private void NormalizeNoteFonts()
     {
-        var fallback = _fontFamilies.FirstOrDefault() ?? NoteItem.DefaultFontFamily;
+        var fallback = "Segoe UI";
 
         foreach (var note in _notes.Where(note => !_fontFamilies.Contains(note.FontFamily)))
         {
@@ -303,9 +283,7 @@ public sealed partial class MainWindow : Window
         }
     }
 
-    private sealed record LegacyNoteState(string Text, string FontFamily, double FontSize);
-
-    private sealed record AppSettings(string[] FontFamilies)
+    private sealed record AppSettings(string[] FontFamilies, string DefaultFontFamily)
     {
         public static AppSettings Default { get; } = new(
         [
@@ -316,30 +294,31 @@ public sealed partial class MainWindow : Window
             "Consolas",
             "Georgia",
             "Times New Roman"
-        ]);
+        ],
+        "Segoe UI"
+        );
     }
 }
 
 public sealed class NoteItem : INotifyPropertyChanged
 {
-    public const string DefaultFontFamily = "Segoe UI";
-    public const double DefaultFontSize = 18;
-
     private string _text;
     private string _fontFamily;
-    private double _fontSize;
+    private int _fontSize;
+    private string _backgroundColor;
 
     public NoteItem()
-        : this(string.Empty, DefaultFontFamily, DefaultFontSize)
+        : this(string.Empty, "Segoe UI", 24, "Transparent")
     {
     }
 
-    public NoteItem(string text, string fontFamily, double fontSize)
+    public NoteItem(string text, string fontFamily, int fontSize, string backgroundColor)
     {
         Id = Guid.NewGuid();
         _text = text;
-        _fontFamily = string.IsNullOrWhiteSpace(fontFamily) ? DefaultFontFamily : fontFamily;
-        _fontSize = fontSize > 0 ? fontSize : DefaultFontSize;
+        _fontFamily = string.IsNullOrWhiteSpace(fontFamily) ? "Segoe UI" : fontFamily;
+        _fontSize = fontSize > 0 ? fontSize : 24;
+        _backgroundColor = string.IsNullOrWhiteSpace(backgroundColor) ? "Transparent" : backgroundColor;
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -377,7 +356,7 @@ public sealed class NoteItem : INotifyPropertyChanged
         }
     }
 
-    public double FontSize
+    public int FontSize
     {
         get => _fontSize;
         set
@@ -388,6 +367,19 @@ public sealed class NoteItem : INotifyPropertyChanged
             }
 
             _fontSize = value;
+            OnPropertyChanged();
+        }
+    }
+    public string BackgroundColor
+    {
+        get => _backgroundColor;
+        set
+        {
+            if (_backgroundColor == value) {
+                return;
+            }
+
+            _backgroundColor = value;
             OnPropertyChanged();
         }
     }

@@ -1,4 +1,5 @@
 using Microsoft.UI.Xaml;
+using Windows.Storage;
 
 namespace SimpleStickyNotes;
 

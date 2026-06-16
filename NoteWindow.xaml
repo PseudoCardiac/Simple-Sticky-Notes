@@ -14,6 +14,15 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <Grid.Resources>
+            <Style x:Name="RootGridFontIconStyle" TargetType="FontIcon">
+                <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}"/>
+            </Style>
+            <Style x:Name="RootGridTextBoxStyle"  TargetType="TextBox">
+                <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}"/>
+            </Style>
+        </Grid.Resources>
+
         <Grid x:Name="TitleBar" Grid.Row="0" Background="Transparent" Padding="9 9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -68,7 +77,7 @@
                             IsColorSliderVisible="True"
                             IsColorChannelTextInputVisible="False"
                             IsHexInputVisible="False"
-                            ColorChanged="ColorPicker_ColorChanged"/>
+                            ColorChanged="ColorPicker_ColorChanged" />
                     </Flyout>
                 </Button.Flyout>
             </Button>
@@ -148,8 +157,8 @@
                 x:Name="FontSizeSlider"
                 Grid.Column="0"
                 Margin="12,0"
-                Minimum="12"
-                Maximum="72"
+                Maximum="144"
+                Minimum="24"
                 SmallChange="1"
                 StepFrequency="1"
                 ValueChanged="FontSizeSlider_ValueChanged"

@@ -7,38 +7,178 @@
     mc:Ignorable="d"
     Title="">
 
-    <Grid>
-        <TextBox x:ConnectionId='2'
-            x:Name="NoteBox"
-            AcceptsReturn="True"
-            BorderThickness="0"
-            FontSize="18"
-            Padding="14,24,14,14"
-                                             
-            TextWrapping="Wrap"
-            VerticalAlignment="Stretch"
-            VerticalContentAlignment="Top">
-            <TextBox.ContextFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem x:ConnectionId='4'                                Text="Open note list" />
-                    <MenuFlyoutItem x:ConnectionId='5'                                 Text="Close memo" />
-                    <MenuFlyoutSeparator />
-                    <ToggleMenuFlyoutItem x:ConnectionId='6'
-                        x:Name="AlwaysOnTopMenuItem"
-                                                         
-                        Text="Always on top" />
-                    <MenuFlyoutSeparator />
-                    <MenuFlyoutSubItem x:ConnectionId='7' x:Name="FontMenu" Text="Font" />
-                    <MenuFlyoutSubItem x:ConnectionId='8' x:Name="FontSizeMenu" Text="Size" />
-                </MenuFlyout>
-            </TextBox.ContextFlyout>
-        </TextBox>
+    <Grid x:ConnectionId='2' x:Name="RootGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <Border x:ConnectionId='3'
-            x:Name="DragRegion"
-            Height="22"
-            VerticalAlignment="Top"
-            Background="Transparent" />
+        <Grid.Resources>
+            <Style x:ConnectionId='3' x:Name="RootGridFontIconStyle" TargetType="FontIcon">
+                <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}"/>
+            </Style>
+            <Style x:ConnectionId='4' x:Name="RootGridTextBoxStyle"  TargetType="TextBox">
+                <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}"/>
+            </Style>
+        </Grid.Resources>
+
+        <Grid x:ConnectionId='5' x:Name="TitleBar" Grid.Row="0" Background="Transparent" Padding="9 9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:ConnectionId='16'
+                x:Name="HandleButton"
+                Grid.Column="0"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderThickness="0">
+                <FontIcon x:ConnectionId='25'
+                    x:Name="HandleIcon"
+                    Glyph="&#xE7C2;" />
+            </Button>
+
+            <Button x:ConnectionId='17'
+                x:Name="PinButton"
+                Grid.Column="1"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderThickness="0"
+                                       >
+                <FontIcon x:ConnectionId='24'
+                    x:Name="PinIcon"
+                    Glyph="&#xE718;" />
+            </Button>
+            
+            <Button x:ConnectionId='18'
+                x:Name="ColorButton"
+                Grid.Column="2"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderThickness="0">
+                <FontIcon x:ConnectionId='22'
+                    x:Name="ColorIcon"
+                    Glyph="&#xE790;" />
+                <Button.Flyout>
+                    <Flyout ShouldConstrainToRootBounds="False">
+                        <ColorPicker x:ConnectionId='23' x:Name="ColorPicker"
+                            ColorSpectrumShape="Ring"
+                            IsMoreButtonVisible="False"
+                            IsColorSliderVisible="True"
+                            IsColorChannelTextInputVisible="False"
+                            IsHexInputVisible="False"
+                                                                   />
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+            
+            <Border x:ConnectionId='19'
+                x:Name="LockedTitleDragRegion"
+                Grid.Column="3"
+                Background="Transparent"
+                                                                 />
+
+            <Button x:ConnectionId='20'
+                x:Name="CloseButton"
+                Grid.Column="4"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderThickness="0"
+                                         >
+                <FontIcon x:ConnectionId='21'
+                    x:Name="CloseIcon"
+                    Glyph="&#xF78A;" />
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <TextBox x:ConnectionId='10'
+                x:Name="NoteBox"
+                AcceptsReturn="True"
+                BorderThickness="0"
+                FontSize="18"
+                Padding="36, 36, 18, 0"
+                                                 
+                TextWrapping="Wrap"
+                VerticalAlignment="Stretch"
+                VerticalContentAlignment="Top">
+                <TextBox.ContextFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:ConnectionId='14'                                Text="노트 목록 열기" />
+                        <MenuFlyoutSeparator />
+                        <MenuFlyoutSubItem x:ConnectionId='15' x:Name="FontMenu" Text="글꼴" />
+                    </MenuFlyout>
+                </TextBox.ContextFlyout>
+                <TextBox.Resources>
+                    <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+                    <SolidColorBrush x:Key="TextControlBackground" Color="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+                    <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+                </TextBox.Resources>
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
+            <Border x:ConnectionId='11'
+                x:Name="LockedBodyDragRegion"
+                Background="Transparent"
+                Visibility="Collapsed">
+                <Border.ContextFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:ConnectionId='12'                                Text="Open note list" />
+                        <MenuFlyoutSeparator />
+                        <MenuFlyoutSubItem x:ConnectionId='13' x:Name="LockedFontMenu" Text="Font" />
+                    </MenuFlyout>
+                </Border.ContextFlyout>
+            </Border>
+        </Grid>
+
+        <Grid x:ConnectionId='6' Grid.Row="2" x:Name="SliderAndLockGrid" Background="Transparent" Padding="9 9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+        
+            <Slider x:ConnectionId='7'
+                x:Name="FontSizeSlider"
+                Grid.Column="0"
+                Margin="12,0"
+                Value="24"
+                Minimum="12"
+                Maximum="72"
+                SmallChange="1"
+                StepFrequency="1"
+                                                          
+                VerticalAlignment="Center" />
+
+            <Button x:ConnectionId='8'
+                x:Name="LockButton"
+                Grid.Column="1"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderThickness="0"
+                                        >
+                <FontIcon x:ConnectionId='9'
+                    x:Name="LockIcon"
+                    Glyph="&#xE72E;" />
+            </Button>
+        </Grid>
     </Grid>
 </Window>
 

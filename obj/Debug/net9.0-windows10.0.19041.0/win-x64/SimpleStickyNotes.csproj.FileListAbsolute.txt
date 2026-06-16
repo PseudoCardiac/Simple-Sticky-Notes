@@ -364,3 +364,4 @@ C:\Users\nooye\Documents\Codex\2026-06-15\11-ui-winui\outputs\SimpleStickyNotes\
 C:\Users\nooye\Documents\Codex\2026-06-15\11-ui-winui\outputs\SimpleStickyNotes\obj\Debug\net9.0-windows10.0.19041.0\win-x64\NoteWindow.g.cs
 C:\Users\nooye\Documents\Codex\2026-06-15\11-ui-winui\outputs\SimpleStickyNotes\obj\Debug\net9.0-windows10.0.19041.0\win-x64\NoteWindow.xaml
 C:\Users\nooye\Documents\Codex\2026-06-15\11-ui-winui\outputs\SimpleStickyNotes\obj\Debug\net9.0-windows10.0.19041.0\win-x64\NoteWindow.xbf
+C:\Users\nooye\Documents\Codex\2026-06-15\11-ui-winui\outputs\SimpleStickyNotes\obj\Debug\net9.0-windows10.0.19041.0\win-x64\SimpleStickyNotes.sourcelink.json

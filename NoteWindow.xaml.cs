@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Windows.Graphics;
+using Windows.UI;
 using Windows.UI.ViewManagement;
 using WinRT.Interop;
 
@@ -50,6 +51,7 @@ public sealed partial class NoteWindow : Window
         brush = new();
 
         InitializeComponent();
+        SetSliderValue();
         ExtendsContentIntoTitleBar = true;
         BuildContextMenu();
         HideTitleBar();
@@ -58,6 +60,36 @@ public sealed partial class NoteWindow : Window
         ApplyLockState();
         SetTitleBar(HandleButton);
         DisableTitleBarDoubleClick();
+        SetBackgroundColor();
+    }
+
+    private void SetSliderValue()
+    {
+        FontSizeSlider.ValueChanged -= FontSizeSlider_ValueChanged;
+        FontSizeSlider.Value = _note.FontSize;
+        FontSizeSlider.ValueChanged += FontSizeSlider_ValueChanged;
+    }
+
+    public void SetBackgroundColor()
+    {
+        string hex = _note.BackgroundColor.TrimStart('#');
+
+        byte r, g, b, a;
+
+        if (hex.Length == 8) {
+            a = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+            r = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+            g = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+            b = byte.Parse(hex.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
+        } else {
+            a = 255; // Default alpha value
+            r = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+            g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+            b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+        }
+
+        brush.Color = Color.FromArgb(a, r, g, b);
+        RootGrid.Background = brush;
     }
 
     public void RefreshFonts()
@@ -87,12 +119,12 @@ public sealed partial class NoteWindow : Window
     {
         _isLoading = true;
         NoteBox.Text = _note.Text;
-        FontSizeSlider.Value = Math.Clamp(_note.FontSize, 12, 72);
+        FontSizeSlider.Value = Math.Clamp(_note.FontSize, 24, 144);
         ApplyFont(_note.FontFamily, _note.FontSize);
         _isLoading = false;
     }
 
-    private void ApplyFont(string fontFamily, double fontSize)
+    private void ApplyFont(string fontFamily, int fontSize)
     {
         var families = _getFontFamilies();
         if (families.Count > 0 && !families.Contains(fontFamily)) {
@@ -101,11 +133,11 @@ public sealed partial class NoteWindow : Window
         }
 
         if (string.IsNullOrWhiteSpace(fontFamily)) {
-            fontFamily = NoteItem.DefaultFontFamily;
+            fontFamily = "Segoe UI";
         }
 
         NoteBox.FontFamily = new FontFamily(fontFamily);
-        NoteBox.FontSize = Math.Clamp(fontSize, 12, 72);
+        NoteBox.FontSize = Math.Clamp(fontSize, 24, 144);
     }
 
     private static string GetFontDisplayName(string fontFamily)
@@ -230,7 +262,7 @@ public sealed partial class NoteWindow : Window
             return;
         }
 
-        _note.FontSize = e.NewValue;
+        _note.FontSize = (int)e.NewValue;
         ApplyFont(_note.FontFamily, _note.FontSize);
         _saveNotes();
     }
@@ -255,5 +287,34 @@ public sealed partial class NoteWindow : Window
     {
         brush.Color = args.NewColor;
         RootGrid.Background = brush;
+        //SetTextColor(IsLight(args.NewColor));
+
+        _note.BackgroundColor = brush.Color.ToString() ?? "Transparent";
+        _saveNotes();
+    }
+
+    private static bool IsLight(Color color)
+    {
+        return 0.2126 * color.R + 0.7152 * color.G + 0.0722 * color.B > 128;
+    }
+
+    Color BLACK = Color.FromArgb(255, 26, 26, 26);
+    Color WHITE = Color.FromArgb(255, 255, 255, 255);
+    private void SetTextColor(bool isBlack)
+    {
+        Color textColor = isBlack ? BLACK : WHITE;
+
+        var fontIconSetter = RootGridFontIconStyle.Setters.OfType<Setter>().First();
+        var textBoxSetter = RootGridFontIconStyle.Setters.OfType<Setter>().First();
+
+        if (fontIconSetter != null)
+        {
+            Console.WriteLine("Font Icon Setter is Not Null!");
+            fontIconSetter.Value = new SolidColorBrush(textColor);
+        }
+        if (textBoxSetter != null) {
+            Console.WriteLine("Text Color Setter is Not Null!");
+            textBoxSetter.Value = new SolidColorBrush(textColor);
+        }
     }
 }
