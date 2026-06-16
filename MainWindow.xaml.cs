@@ -308,7 +308,7 @@ public sealed class NoteItem : INotifyPropertyChanged
     private string _backgroundColor;
 
     public NoteItem()
-        : this(string.Empty, "Segoe UI", 24, "Transparent")
+        : this(string.Empty, "Segoe UI", 24, "EBC91E")
     {
     }
 
@@ -318,7 +318,7 @@ public sealed class NoteItem : INotifyPropertyChanged
         _text = text;
         _fontFamily = string.IsNullOrWhiteSpace(fontFamily) ? "Segoe UI" : fontFamily;
         _fontSize = fontSize > 0 ? fontSize : 24;
-        _backgroundColor = string.IsNullOrWhiteSpace(backgroundColor) ? "Transparent" : backgroundColor;
+        _backgroundColor = string.IsNullOrWhiteSpace(backgroundColor) ? "EBC91E" : backgroundColor;
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

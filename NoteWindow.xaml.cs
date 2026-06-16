@@ -28,9 +28,9 @@ public sealed partial class NoteWindow : Window
     private bool _isLoading;
     private bool _isTextLocked;
     private bool _isAlwaysOnTop;
-    private Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController acrylicController;
 
-    private SolidColorBrush brush;
+    private SolidColorBrush backgroundBrush;
+    private SolidColorBrush textBrush;
 
     public NoteWindow(
         NoteItem note,
@@ -43,15 +43,10 @@ public sealed partial class NoteWindow : Window
         _saveNotes = saveNotes;
         _showListWindow = showListWindow;
 
-        acrylicController = new()
-        {
-            Kind = DesktopAcrylicKind.Thin
-        };
-
-        brush = new();
+        backgroundBrush = new();
+        textBrush = new();
 
         InitializeComponent();
-        SetSliderValue();
         ExtendsContentIntoTitleBar = true;
         BuildContextMenu();
         HideTitleBar();
@@ -61,6 +56,8 @@ public sealed partial class NoteWindow : Window
         SetTitleBar(HandleButton);
         DisableTitleBarDoubleClick();
         SetBackgroundColor();
+        SetSliderValue();
+        SetTextColor(IsLight(_note.BackgroundColor));
     }
 
     private void SetSliderValue()
@@ -70,9 +67,9 @@ public sealed partial class NoteWindow : Window
         FontSizeSlider.ValueChanged += FontSizeSlider_ValueChanged;
     }
 
-    public void SetBackgroundColor()
+    public static byte[] HexToBytes(string hex)
     {
-        string hex = _note.BackgroundColor.TrimStart('#');
+        hex = hex.TrimStart('#');
 
         byte r, g, b, a;
 
@@ -87,9 +84,14 @@ public sealed partial class NoteWindow : Window
             g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
             b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
         }
+        return [ r, g, b, a ];
+    }
 
-        brush.Color = Color.FromArgb(a, r, g, b);
-        RootGrid.Background = brush;
+    public void SetBackgroundColor()
+    {
+        byte[] bytes = HexToBytes(_note.BackgroundColor);
+        backgroundBrush.Color = Color.FromArgb(bytes[3], bytes[0], bytes[1], bytes[2]);
+        RootGrid.Background = backgroundBrush;
     }
 
     public void RefreshFonts()
@@ -285,36 +287,47 @@ public sealed partial class NoteWindow : Window
 
     private void ColorPicker_ColorChanged(ColorPicker sender, ColorChangedEventArgs args)
     {
-        brush.Color = args.NewColor;
-        RootGrid.Background = brush;
-        //SetTextColor(IsLight(args.NewColor));
+        backgroundBrush.Color = args.NewColor;
+        RootGrid.Background = backgroundBrush;
 
-        _note.BackgroundColor = brush.Color.ToString() ?? "Transparent";
+        _note.BackgroundColor = backgroundBrush.Color.ToString() ?? "EBC91E";
         _saveNotes();
+
+        bool isLight = IsLight(backgroundBrush.Color.ToString());
+        IsDarkBlock.Text = isLight.ToString();
+        SetTextColor(isLight);
     }
 
-    private static bool IsLight(Color color)
+    private static bool IsLight(string color)
     {
-        return 0.2126 * color.R + 0.7152 * color.G + 0.0722 * color.B > 128;
+        byte[] bytes = HexToBytes(color);
+        return 0.2126 * (int) bytes[0] + 0.7152 * (int) bytes[1] + 0.0722 * (int) bytes[2] > 128;
     }
 
-    Color BLACK = Color.FromArgb(255, 26, 26, 26);
-    Color WHITE = Color.FromArgb(255, 255, 255, 255);
+    readonly Color BLACK = Color.FromArgb(255, 16, 16, 16);
+    readonly Color WHITE = Color.FromArgb(255, 255, 255, 255);
     private void SetTextColor(bool isBlack)
     {
         Color textColor = isBlack ? BLACK : WHITE;
 
-        var fontIconSetter = RootGridFontIconStyle.Setters.OfType<Setter>().First();
-        var textBoxSetter = RootGridFontIconStyle.Setters.OfType<Setter>().First();
-
-        if (fontIconSetter != null)
-        {
-            Console.WriteLine("Font Icon Setter is Not Null!");
-            fontIconSetter.Value = new SolidColorBrush(textColor);
-        }
-        if (textBoxSetter != null) {
-            Console.WriteLine("Text Color Setter is Not Null!");
-            textBoxSetter.Value = new SolidColorBrush(textColor);
-        }
+        //RootGridFontIconStyleSetter.Value = textColor;
+        textBrush.Color = textColor;
+        NoteBox.Foreground = textBrush;
+        TextColor1.Color = textColor;
+        TextColor2.Color = textColor;
+        TextColor3.Color = textColor;
+        NoteBox.Text = NoteBox.Text + " ";
+        NoteBox.Text = NoteBox.Text[..^1];
+        HandleButton.Foreground = textBrush;
+        PinButton.Foreground = textBrush;
+        ColorButton.Foreground = textBrush;
+        CloseButton.Foreground = textBrush;
+        LockButton.Foreground = textBrush;
+        IconColor1.Color = textColor;
+        IconColor2.Color = textColor;
+        IconColor3.Color = textColor;
+        IconColor4.Color = textColor;
+        IconColor5.Color = textColor;
+        IconColor6.Color = textColor;
     }
 }
