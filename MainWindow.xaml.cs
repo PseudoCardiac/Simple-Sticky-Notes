@@ -109,12 +109,15 @@ public sealed partial class MainWindow : Window
         }
     }
 
+    JsonSerializerOptions jsonSerializerOptions = new()
+    { WriteIndented = true };
+
     private void SaveSettings()
     {
         Directory.CreateDirectory(SettingsDirectory);
 
         var settings = new AppSettings([.. _fontFamilies], _defaultFontFamily);
-        var json = JsonSerializer.Serialize(settings, new JsonSerializerOptions { WriteIndented = true });
+        var json = JsonSerializer.Serialize(settings, jsonSerializerOptions);
         File.WriteAllText(SettingsPath, json);
     }
 
@@ -325,6 +328,7 @@ public sealed class NoteItem : INotifyPropertyChanged
     private string _fontFamily;
     private int _fontSize;
     private string _backgroundColor;
+    private string _textColor;
 
     public NoteItem()
         : this(string.Empty, "Segoe UI", 24, "#EBC91E")
@@ -337,7 +341,8 @@ public sealed class NoteItem : INotifyPropertyChanged
         _text = text;
         _fontFamily = string.IsNullOrWhiteSpace(fontFamily) ? "Segoe UI" : fontFamily;
         _fontSize = fontSize > 0 ? fontSize : 24;
-        _backgroundColor = string.IsNullOrWhiteSpace(backgroundColor) ? "EBC91E" : backgroundColor;
+        _backgroundColor = string.IsNullOrWhiteSpace(backgroundColor) ? "#EBC91E" : backgroundColor;
+        _textColor = IsLight(backgroundColor) ? "#1A1A1A" : "#FFFFFF";
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -399,6 +404,9 @@ public sealed class NoteItem : INotifyPropertyChanged
             }
 
             _backgroundColor = value;
+
+            TextColor = IsLight(value) ? "#1A1A1A" : "#FFFFFF";
+
             OnPropertyChanged();
         }
     }
@@ -415,9 +423,15 @@ public sealed class NoteItem : INotifyPropertyChanged
 
     public string TextColor
     {
-        get
+        get => _textColor;
+        set
         {
-            return IsLight(BackgroundColor) ? "#191919" : "#FFFFFF";
+            if (_textColor == value) {
+                return;
+            }
+
+            _textColor = value;
+            OnPropertyChanged();
         }
     }
 
@@ -443,6 +457,9 @@ public sealed class NoteItem : INotifyPropertyChanged
 
     private static bool IsLight(string color)
     {
+        if (!color.StartsWith('#') || (color.Length != 7 && color.Length != 9)) {
+            return true;
+        }
         byte[] bytes = HexToBytes(color);
         return 0.2126 * (int) bytes[0] + 0.7152 * (int) bytes[1] + 0.0722 * (int) bytes[2] > 128;
     }

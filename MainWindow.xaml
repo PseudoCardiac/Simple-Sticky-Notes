@@ -15,22 +15,49 @@
 
         <Grid x:Name="TitleBar" Grid.Row="0" Background="Transparent" Padding="9 9">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Border
-                x:Name="LockedTitleDragRegion"
-                Grid.Column="0"/>
+            <Button
+                Grid.Column="0"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderThickness="0"
+                Click="CloseButton_Click">
+                <FontIcon
+                    x:Name="NewIcon"
+                    Glyph="&#xE710;" />
+            </Button>
 
             <Button
-                x:Name="CloseButton"
                 Grid.Column="1"
                 Width="32"
                 Height="32"
                 Padding="0"
                 Background="Transparent"
-                Foreground="#1A1A1A"
+                BorderThickness="0"
+                Click="CloseButton_Click">
+                <FontIcon
+                    x:Name="FontIcon"
+                    Glyph="&#xE8D2;" />
+            </Button>
+            
+            <Border
+                x:Name="LockedTitleDragRegion"
+                Grid.Column="2"/>
+
+            <Button
+                x:Name="CloseButton"
+                Grid.Column="3"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
                 BorderThickness="0"
                 Click="CloseButton_Click">
                 <FontIcon

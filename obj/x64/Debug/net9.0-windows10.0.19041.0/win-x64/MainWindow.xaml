@@ -15,26 +15,52 @@
 
         <Grid x:ConnectionId='2' x:Name="TitleBar" Grid.Row="0" Background="Transparent" Padding="9 9">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Border x:ConnectionId='8'
-                x:Name="LockedTitleDragRegion"
-                Background="Red"
-                Grid.Column="0"/>
+            <Button x:ConnectionId='8'
+                Grid.Column="0"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderThickness="0"
+                                         >
+                <FontIcon x:ConnectionId='14'
+                    x:Name="NewIcon"
+                    Glyph="&#xE710;" />
+            </Button>
 
             <Button x:ConnectionId='9'
-                x:Name="CloseButton"
                 Grid.Column="1"
                 Width="32"
                 Height="32"
                 Padding="0"
                 Background="Transparent"
-                Foreground="#1A1A1A"
                 BorderThickness="0"
                                          >
-                <FontIcon x:ConnectionId='10'
+                <FontIcon x:ConnectionId='13'
+                    x:Name="FontIcon"
+                    Glyph="&#xE8D2;" />
+            </Button>
+            
+            <Border x:ConnectionId='10'
+                x:Name="LockedTitleDragRegion"
+                Grid.Column="2"/>
+
+            <Button x:ConnectionId='11'
+                x:Name="CloseButton"
+                Grid.Column="3"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderThickness="0"
+                                         >
+                <FontIcon x:ConnectionId='12'
                     x:Name="CloseIcon"
                     Glyph="&#xF78A;" />
             </Button>
@@ -72,11 +98,11 @@
         
         <Grid.ContextFlyout>
             <MenuFlyout>
-                <MenuFlyoutItem x:ConnectionId='11'                             Text="New note" />
+                <MenuFlyoutItem x:ConnectionId='15'                             Text="New note" />
                 <MenuFlyoutSeparator />
-                <MenuFlyoutItem x:ConnectionId='12'                                     Text="Add font family" />
-                <MenuFlyoutItem x:ConnectionId='13'                                       Text="Import local font" />
-                <MenuFlyoutSubItem x:ConnectionId='14' x:Name="RemoveFontMenu" Text="Remove font" />
+                <MenuFlyoutItem x:ConnectionId='16'                                     Text="Add font family" />
+                <MenuFlyoutItem x:ConnectionId='17'                                       Text="Import local font" />
+                <MenuFlyoutSubItem x:ConnectionId='18' x:Name="RemoveFontMenu" Text="Remove font" />
             </MenuFlyout>
         </Grid.ContextFlyout>
     </Grid>

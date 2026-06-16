@@ -298,6 +298,9 @@ public sealed partial class NoteWindow : Window
 
     private static bool IsLight(string color)
     {
+        if (!color.StartsWith('#') || (color.Length != 7 && color.Length != 9)) {
+            return true;
+        }
         byte[] bytes = HexToBytes(color);
         return 0.2126 * (int) bytes[0] + 0.7152 * (int) bytes[1] + 0.0722 * (int) bytes[2] > 128;
     }
