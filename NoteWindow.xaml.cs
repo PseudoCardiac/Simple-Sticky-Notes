@@ -47,6 +47,7 @@ public sealed partial class NoteWindow : Window
         textBrush = new();
 
         InitializeComponent();
+        SetSliderValue();
         ExtendsContentIntoTitleBar = true;
         BuildContextMenu();
         HideTitleBar();
@@ -56,7 +57,6 @@ public sealed partial class NoteWindow : Window
         SetTitleBar(HandleButton);
         DisableTitleBarDoubleClick();
         SetBackgroundColor();
-        SetSliderValue();
         SetTextColor(IsLight(_note.BackgroundColor));
     }
 
@@ -84,7 +84,7 @@ public sealed partial class NoteWindow : Window
             g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
             b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
         }
-        return [ r, g, b, a ];
+        return [r, g, b, a];
     }
 
     public void SetBackgroundColor()
@@ -260,7 +260,7 @@ public sealed partial class NoteWindow : Window
 
     private void FontSizeSlider_ValueChanged(object sender, Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
     {
-        if (_isLoading || _isTextLocked) {
+        if (_isLoading || _isTextLocked || e.NewValue == 24) {
             return;
         }
 
