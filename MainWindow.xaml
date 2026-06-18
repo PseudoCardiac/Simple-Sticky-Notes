@@ -7,7 +7,7 @@
     mc:Ignorable="d"
     Title="Simple Sticky Notes">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" AllowDrop="True" DragOver="MainWindow_DragOver" Drop="MainWindow_Drop">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -57,7 +57,7 @@
                             SelectionMode="Single"
                             ItemsSource="{x:Bind FontFamilies, Mode=OneWay}"
                             ContextFlyout="{StaticResource FontMenuFlyout}"
-                            RightTapped ="FontList_RightTapped" />
+                            RightTapped ="FontList_RightTapped"/>
                     </Flyout>
                 </Button.Flyout>
             </Button>

@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,11 +17,16 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Graphics;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI;
 using WinRT.Interop;
+
+using System.Drawing;
+using System.Drawing.Text;
+using Windows.ApplicationModel.Activation;
 
 namespace SimpleStickyNotes;
 
@@ -41,6 +47,8 @@ public sealed partial class MainWindow : Window
     public readonly ObservableCollection<string> FontFamilies = [];
     public string _defaultFontFamily = "Segoe UI";
 
+    private InstalledFontCollection _installedFontCollection;
+    private FontFamily[] _installedFontFamilies;
 
     public MainWindow()
     {
@@ -48,11 +56,13 @@ public sealed partial class MainWindow : Window
         ResizeWindow(400, 600);
         LoadSettings();
         LoadNotes();
-        RebuildFontList();
         ExtendsContentIntoTitleBar = true;
         HideTitleBar();
         SetTitleBar(TitleBar);
         NotesList.ItemsSource = _notes;
+
+        _installedFontCollection = new InstalledFontCollection();
+        _installedFontFamilies = _installedFontCollection.Families;
     }
     private void HideTitleBar()
     {
@@ -246,7 +256,6 @@ public sealed partial class MainWindow : Window
         FontFamilies.Remove(fontFamily);
         SaveSettings();
         NormalizeNoteFonts();
-        RebuildFontList();
         RefreshOpenNoteFonts();
     }
 
@@ -259,7 +268,17 @@ public sealed partial class MainWindow : Window
 
         FontFamilies.Add(fontFamily);
         SaveSettings();
-        RebuildFontList();
+        RefreshOpenNoteFonts();
+    }
+
+    private void RemoveFontFamily(string fontFamily)
+    {
+        if (string.IsNullOrWhiteSpace(fontFamily) || FontFamilies.Contains(fontFamily)) {
+            return;
+        }
+
+        FontFamilies.Remove(fontFamily);
+        SaveSettings();
         RefreshOpenNoteFonts();
     }
 
@@ -273,19 +292,6 @@ public sealed partial class MainWindow : Window
         }
 
         SaveNotes();
-    }
-
-    private void RebuildFontList()
-    {
-        FontList.Items.Clear();
-
-        foreach (var fontFamily in FontFamilies)
-        {
-            //var item = new ListViewItem { Tag = fontFamily };
-            //item.Click += Font_Click;
-            //FontList.Items.Add(item);   
-            return;
-        }
     }
 
     private static string GetFontDisplayName(string fontFamily)
@@ -328,12 +334,36 @@ public sealed partial class MainWindow : Window
         }
     }
     
-    private string _selectedContextItem;
+    private string? _selectedContextItem;
     private void FontList_RightTapped(object sender, RightTappedRoutedEventArgs e)
     {
         if (e.OriginalSource is FrameworkElement element &&
         element.DataContext is string item) {
             _selectedContextItem = item;
+        }
+    }
+
+    private async void MainWindow_Drop(object sender, DragEventArgs e)
+    {
+        //InstalledFontCollection installedFontCollection = new();
+        //FontFamily[] fontFamilies;
+        //fontFamilies = installedFontCollection.Families;
+
+        //for (int i = 0; i < fontFamilies.Length; ++i)
+        //{
+        //    AddFontFamily(fontFamilies[i].Name);
+        //}
+    }
+
+    private void MainWindow_DragOver(object sender, DragEventArgs e)
+    {
+        // Check if the item being dragged contains files
+        if (e.DataView.Contains(Windows.ApplicationModel.DataTransfer.StandardDataFormats.StorageItems)) {
+            e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy;
+            e.DragUIOverride.Caption = "Drop to add font";
+            e.DragUIOverride.IsCaptionVisible = true;
+        } else {
+            e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.None;
         }
     }
 

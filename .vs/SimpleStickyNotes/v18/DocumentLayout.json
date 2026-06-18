@@ -9,6 +9,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|c:\\users\\nooye\\documents\\codex\\2026-06-15\\11-ui-winui\\outputs\\simplestickynotes\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|c:\\users\\nooye\\documents\\codex\\2026-06-15\\11-ui-winui\\outputs\\simplestickynotes\\simplestickynotes.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|solutionrelative:simplestickynotes.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,17 +22,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SimpleStickyNotes",
+              "DocumentMoniker": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\SimpleStickyNotes.csproj",
+              "RelativeDocumentMoniker": "SimpleStickyNotes.csproj",
+              "ToolTip": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\SimpleStickyNotes.csproj",
+              "RelativeToolTip": "SimpleStickyNotes.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-18T14:11:56.921Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAADoBAAAAAAAAAAAuwEQBAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\MainWindow.xaml.cs*",
+              "RelativeToolTip": "MainWindow.xaml.cs*",
+              "ViewState": "AgIAAEsBAAAAAAAAAAAkwFwBAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-18T08:12:11.937Z",
               "EditorCaption": ""
@@ -39,9 +56,9 @@
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\MainWindow.xaml*",
-              "RelativeToolTip": "MainWindow.xaml*",
-              "ViewState": "AgIAACUAAAAAAAAAAAAywDAAAABOAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAAkAAABwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-06-16T07:14:37.119Z",
               "EditorCaption": ""
