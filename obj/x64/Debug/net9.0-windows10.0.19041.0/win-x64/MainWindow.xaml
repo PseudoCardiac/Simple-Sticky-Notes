@@ -21,37 +21,36 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button x:ConnectionId='8'
+            <Button x:ConnectionId='10'
                 Grid.Column="0"
                 Width="32"
                 Height="32"
                 Padding="0"
                 Background="Transparent"
                 BorderThickness="0"
-                                         >
-                <FontIcon x:ConnectionId='14'
+                                           >
+                <FontIcon x:ConnectionId='15'
                     x:Name="NewIcon"
                     Glyph="&#xE710;" />
             </Button>
 
-            <Button x:ConnectionId='9'
+            <Button
                 Grid.Column="1"
                 Width="32"
                 Height="32"
                 Padding="0"
                 Background="Transparent"
-                BorderThickness="0"
-                                         >
-                <FontIcon x:ConnectionId='13'
+                BorderThickness="0">
+                <FontIcon x:ConnectionId='14'
                     x:Name="FontIcon"
                     Glyph="&#xE8D2;" />
             </Button>
             
-            <Border x:ConnectionId='10'
+            <Border x:ConnectionId='11'
                 x:Name="LockedTitleDragRegion"
                 Grid.Column="2"/>
 
-            <Button x:ConnectionId='11'
+            <Button x:ConnectionId='12'
                 x:Name="CloseButton"
                 Grid.Column="3"
                 Width="32"
@@ -60,7 +59,7 @@
                 Background="Transparent"
                 BorderThickness="0"
                                          >
-                <FontIcon x:ConnectionId='12'
+                <FontIcon x:ConnectionId='13'
                     x:Name="CloseIcon"
                     Glyph="&#xF78A;" />
             </Button>
@@ -81,15 +80,36 @@
                             Orientation="Vertical"
                             Padding="16">
                         <Border x:ConnectionId='6'                                                    CornerRadius="4">
-                            <TextBlock x:ConnectionId='7'
-                                                                            
-                                FontSize="18"
-                                MaxLines="2"
-                                Padding="16"
-                                Margin="16"
-                                                                    
-                                TextTrimming="CharacterEllipsis"
-                                TextWrapping="Wrap" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock x:ConnectionId='7'
+                                    Grid.Column="0"
+                                                                                
+                                                                                 
+                                    FontSize="18"
+                                    MaxLines="2"
+                                    Padding="16"
+                                    Margin="16"
+                                                                        
+                                    TextTrimming="CharacterEllipsis"
+                                    TextWrapping="Wrap" />
+
+                                <Button x:ConnectionId='8'
+                                    Background="Transparent"
+                                    Grid.Column="1"
+                                    x:Name="DeleteButton"
+                                    FontSize="18"
+                                    Margin="16"
+                                                              >
+                                    <FontIcon x:ConnectionId='9'
+                                                                                    
+                                        Glyph="&#xE74D;" />
+                                </Button>
+                            </Grid>
                         </Border>
                     </StackPanel>
                 </DataTemplate>
@@ -98,8 +118,6 @@
         
         <Grid.ContextFlyout>
             <MenuFlyout>
-                <MenuFlyoutItem x:ConnectionId='15'                             Text="New note" />
-                <MenuFlyoutSeparator />
                 <MenuFlyoutItem x:ConnectionId='16'                                     Text="Add font family" />
                 <MenuFlyoutItem x:ConnectionId='17'                                       Text="Import local font" />
                 <MenuFlyoutSubItem x:ConnectionId='18' x:Name="RemoveFontMenu" Text="Remove font" />

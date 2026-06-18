@@ -28,7 +28,7 @@
                 Padding="0"
                 Background="Transparent"
                 BorderThickness="0"
-                Click="CloseButton_Click">
+                Click="NewNoteButton_Click">
                 <FontIcon
                     x:Name="NewIcon"
                     Glyph="&#xE710;" />
@@ -40,8 +40,7 @@
                 Height="32"
                 Padding="0"
                 Background="Transparent"
-                BorderThickness="0"
-                Click="CloseButton_Click">
+                BorderThickness="0">
                 <FontIcon
                     x:Name="FontIcon"
                     Glyph="&#xE8D2;" />
@@ -81,15 +80,36 @@
                             Orientation="Vertical"
                             Padding="16">
                         <Border Background="{x:Bind BackgroundColor, Mode=OneWay}" CornerRadius="4">
-                            <TextBlock
-                                Foreground="{x:Bind TextColor, Mode=OneWay}"
-                                FontSize="18"
-                                MaxLines="2"
-                                Padding="16"
-                                Margin="16"
-                                Text="{x:Bind Preview, Mode=OneWay}"
-                                TextTrimming="CharacterEllipsis"
-                                TextWrapping="Wrap" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock
+                                    Grid.Column="0"
+                                    Foreground="{x:Bind TextColor, Mode=OneWay}"
+                                    FontFamily="{x:Bind FontFamily, Mode=OneWay}"
+                                    FontSize="18"
+                                    MaxLines="2"
+                                    Padding="16"
+                                    Margin="16"
+                                    Text="{x:Bind Preview, Mode=OneWay}"
+                                    TextTrimming="CharacterEllipsis"
+                                    TextWrapping="Wrap" />
+
+                                <Button
+                                    Background="Transparent"
+                                    Grid.Column="1"
+                                    x:Name="DeleteButton"
+                                    FontSize="18"
+                                    Margin="16"
+                                    Click="DeleteButton_Click">
+                                    <FontIcon
+                                        Foreground="{x:Bind TextColor, Mode=OneWay}"
+                                        Glyph="&#xE74D;" />
+                                </Button>
+                            </Grid>
                         </Border>
                     </StackPanel>
                 </DataTemplate>
@@ -98,8 +118,6 @@
         
         <Grid.ContextFlyout>
             <MenuFlyout>
-                <MenuFlyoutItem Click="NewNoteButton_Click" Text="New note" />
-                <MenuFlyoutSeparator />
                 <MenuFlyoutItem Click="AddFontFamilyMenuItem_Click" Text="Add font family" />
                 <MenuFlyoutItem Click="ImportLocalFontMenuItem_Click" Text="Import local font" />
                 <MenuFlyoutSubItem x:Name="RemoveFontMenu" Text="Remove font" />

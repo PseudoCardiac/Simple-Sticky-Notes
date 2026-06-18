@@ -17,8 +17,12 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using WinRT.Interop;
 
+using System.Threading.Tasks;
+
+
 using System.Runtime.InteropServices;
 using Windows.UI;
+using Windows.ApplicationModel.Background;
 
 namespace SimpleStickyNotes;
 
@@ -303,6 +307,15 @@ public sealed partial class MainWindow : Window
     private void CloseButton_Click(object sender, RoutedEventArgs e)
     {
         Close();
+    }
+
+    private void DeleteButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender == null) return;
+
+        var note = (sender as FrameworkElement).DataContext as NoteItem;
+        _notes.Remove(note);
+        SaveNotes();
     }
 
     private sealed record AppSettings(string[] FontFamilies, string DefaultFontFamily)

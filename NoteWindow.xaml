@@ -124,8 +124,6 @@
                 VerticalContentAlignment="Top">
                 <TextBox.ContextFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Click="OpenListMenuItem_Click" Text="노트 목록 열기" />
-                        <MenuFlyoutSeparator />
                         <MenuFlyoutSubItem x:Name="FontMenu" Text="글꼴" />
                     </MenuFlyout>
                 </TextBox.ContextFlyout>
