@@ -37,7 +37,7 @@ public sealed partial class NoteWindow : Window
         Action showListWindow)
     {
         _note = note;
-        _getFontFamilies = getFontFamilies;
+        _getFontFamilies = getFontFamilies; 
         _saveNotes = saveNotes;
         _showListWindow = showListWindow;
 

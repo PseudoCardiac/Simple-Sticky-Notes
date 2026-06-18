@@ -1,4 +1,4 @@
-﻿<Window
+﻿<Window x:ConnectionId='1'
     x:Class="SimpleStickyNotes.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -29,7 +29,7 @@
                 Background="Transparent"
                 BorderThickness="0"
                                            >
-                <FontIcon x:ConnectionId='15'
+                <FontIcon x:ConnectionId='17'
                     x:Name="NewIcon"
                     Glyph="&#xE710;" />
             </Button>
@@ -44,6 +44,22 @@
                 <FontIcon x:ConnectionId='14'
                     x:Name="FontIcon"
                     Glyph="&#xE8D2;" />
+                <Button.Resources>
+                    <MenuFlyout x:Key="FontMenuFlyout">
+                        <MenuFlyoutItem x:ConnectionId='15' Text="Delete"                                  />
+                    </MenuFlyout>
+                </Button.Resources>
+                <Button.Flyout>
+                    <Flyout ShouldConstrainToRootBounds="False">
+                        <ListView x:ConnectionId='16'
+                            x:Name="FontList" 
+                            Width="200"
+                            SelectionMode="Single"
+                                                                            
+                            ContextFlyout="{StaticResource FontMenuFlyout}"
+                                                                />
+                    </Flyout>
+                </Button.Flyout>
             </Button>
             
             <Border x:ConnectionId='11'
@@ -118,9 +134,9 @@
         
         <Grid.ContextFlyout>
             <MenuFlyout>
-                <MenuFlyoutItem x:ConnectionId='16'                                     Text="Add font family" />
-                <MenuFlyoutItem x:ConnectionId='17'                                       Text="Import local font" />
-                <MenuFlyoutSubItem x:ConnectionId='18' x:Name="RemoveFontMenu" Text="Remove font" />
+                <MenuFlyoutItem x:ConnectionId='18'                                     Text="Add font family" />
+                <MenuFlyoutItem x:ConnectionId='19'                                       Text="Import local font" />
+                <!-- <MenuFlyoutSubItem x:Name="RemoveFontMenu" Text="Remove font" /> -->
             </MenuFlyout>
         </Grid.ContextFlyout>
     </Grid>

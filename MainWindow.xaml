@@ -44,6 +44,22 @@
                 <FontIcon
                     x:Name="FontIcon"
                     Glyph="&#xE8D2;" />
+                <Button.Resources>
+                    <MenuFlyout x:Key="FontMenuFlyout">
+                        <MenuFlyoutItem Text="Delete" Click="FontMenuFlyoutItem_Click" />
+                    </MenuFlyout>
+                </Button.Resources>
+                <Button.Flyout>
+                    <Flyout ShouldConstrainToRootBounds="False">
+                        <ListView
+                            x:Name="FontList" 
+                            Width="200"
+                            SelectionMode="Single"
+                            ItemsSource="{x:Bind FontFamilies, Mode=OneWay}"
+                            ContextFlyout="{StaticResource FontMenuFlyout}"
+                            RightTapped ="FontList_RightTapped" />
+                    </Flyout>
+                </Button.Flyout>
             </Button>
             
             <Border
@@ -120,7 +136,7 @@
             <MenuFlyout>
                 <MenuFlyoutItem Click="AddFontFamilyMenuItem_Click" Text="Add font family" />
                 <MenuFlyoutItem Click="ImportLocalFontMenuItem_Click" Text="Import local font" />
-                <MenuFlyoutSubItem x:Name="RemoveFontMenu" Text="Remove font" />
+                <!-- <MenuFlyoutSubItem x:Name="RemoveFontMenu" Text="Remove font" /> -->
             </MenuFlyout>
         </Grid.ContextFlyout>
     </Grid>

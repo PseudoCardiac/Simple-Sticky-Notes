@@ -2,6 +2,7 @@ using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,16 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
+using Windows.ApplicationModel.Background;
 using Windows.Graphics;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using WinRT.Interop;
-
-using System.Threading.Tasks;
-
-
-using System.Runtime.InteropServices;
 using Windows.UI;
-using Windows.ApplicationModel.Background;
+using WinRT.Interop;
 
 namespace SimpleStickyNotes;
 
@@ -40,8 +38,9 @@ public sealed partial class MainWindow : Window
 
     private readonly ObservableCollection<NoteItem> _notes = [];
     private readonly Dictionary<Guid, NoteWindow> _openNoteWindows = [];
-    private readonly ObservableCollection<string> _fontFamilies = [];
+    public readonly ObservableCollection<string> FontFamilies = [];
     public string _defaultFontFamily = "Segoe UI";
+
 
     public MainWindow()
     {
@@ -49,7 +48,7 @@ public sealed partial class MainWindow : Window
         ResizeWindow(400, 600);
         LoadSettings();
         LoadNotes();
-        RebuildRemoveFontMenu();
+        RebuildFontList();
         ExtendsContentIntoTitleBar = true;
         HideTitleBar();
         SetTitleBar(TitleBar);
@@ -76,16 +75,16 @@ public sealed partial class MainWindow : Window
 
     public IReadOnlyList<string> GetFontFamilies()
     {
-        return _fontFamilies.ToArray();
+        return FontFamilies.ToArray();
     }
 
     private void LoadSettings()
     {
         foreach (var fontFamily in ReadSettings().FontFamilies)
         {
-            if (!string.IsNullOrWhiteSpace(fontFamily) && !_fontFamilies.Contains(fontFamily))
+            if (!string.IsNullOrWhiteSpace(fontFamily) && !FontFamilies.Contains(fontFamily))
             {
-                _fontFamilies.Add(fontFamily);
+                FontFamilies.Add(fontFamily);
             }
         }
 
@@ -120,7 +119,7 @@ public sealed partial class MainWindow : Window
     {
         Directory.CreateDirectory(SettingsDirectory);
 
-        var settings = new AppSettings([.. _fontFamilies], _defaultFontFamily);
+        var settings = new AppSettings([.. FontFamilies], _defaultFontFamily);
         var json = JsonSerializer.Serialize(settings, jsonSerializerOptions);
         File.WriteAllText(SettingsPath, json);
     }
@@ -237,30 +236,30 @@ public sealed partial class MainWindow : Window
         AddFontFamily($"{new Uri(destination).AbsoluteUri}#{fontName}");
     }
 
-    private void RemoveFontMenuItem_Click(object sender, RoutedEventArgs e)
+    private void Font_Click(object sender, RoutedEventArgs e)
     {
         if (sender is not MenuFlyoutItem { Tag: string fontFamily })
         {
             return;
         }
 
-        _fontFamilies.Remove(fontFamily);
+        FontFamilies.Remove(fontFamily);
         SaveSettings();
         NormalizeNoteFonts();
-        RebuildRemoveFontMenu();
+        RebuildFontList();
         RefreshOpenNoteFonts();
     }
 
     private void AddFontFamily(string fontFamily)
     {
-        if (string.IsNullOrWhiteSpace(fontFamily) || _fontFamilies.Contains(fontFamily))
+        if (string.IsNullOrWhiteSpace(fontFamily) || FontFamilies.Contains(fontFamily))
         {
             return;
         }
 
-        _fontFamilies.Add(fontFamily);
+        FontFamilies.Add(fontFamily);
         SaveSettings();
-        RebuildRemoveFontMenu();
+        RebuildFontList();
         RefreshOpenNoteFonts();
     }
 
@@ -268,7 +267,7 @@ public sealed partial class MainWindow : Window
     {
         var fallback = "Segoe UI";
 
-        foreach (var note in _notes.Where(note => !_fontFamilies.Contains(note.FontFamily)))
+        foreach (var note in _notes.Where(note => !FontFamilies.Contains(note.FontFamily)))
         {
             note.FontFamily = fallback;
         }
@@ -276,15 +275,16 @@ public sealed partial class MainWindow : Window
         SaveNotes();
     }
 
-    private void RebuildRemoveFontMenu()
+    private void RebuildFontList()
     {
-        RemoveFontMenu.Items.Clear();
+        FontList.Items.Clear();
 
-        foreach (var fontFamily in _fontFamilies)
+        foreach (var fontFamily in FontFamilies)
         {
-            var item = new MenuFlyoutItem { Text = GetFontDisplayName(fontFamily), Tag = fontFamily };
-            item.Click += RemoveFontMenuItem_Click;
-            RemoveFontMenu.Items.Add(item);
+            //var item = new ListViewItem { Tag = fontFamily };
+            //item.Click += Font_Click;
+            //FontList.Items.Add(item);   
+            return;
         }
     }
 
@@ -316,6 +316,25 @@ public sealed partial class MainWindow : Window
         var note = (sender as FrameworkElement).DataContext as NoteItem;
         _notes.Remove(note);
         SaveNotes();
+    }
+
+    private void FontMenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+    {
+        if (_selectedContextItem != null) {
+            FontFamilies.Remove(_selectedContextItem);    
+
+            SaveSettings();
+            RefreshOpenNoteFonts();
+        }
+    }
+    
+    private string _selectedContextItem;
+    private void FontList_RightTapped(object sender, RightTappedRoutedEventArgs e)
+    {
+        if (e.OriginalSource is FrameworkElement element &&
+        element.DataContext is string item) {
+            _selectedContextItem = item;
+        }
     }
 
     private sealed record AppSettings(string[] FontFamilies, string DefaultFontFamily)
@@ -480,5 +499,13 @@ public sealed class NoteItem : INotifyPropertyChanged
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    private static string GetFontDisplayName(string fontFamily)
+    {
+        var markerIndex = fontFamily.LastIndexOf('#');
+        return markerIndex >= 0 && markerIndex < fontFamily.Length - 1
+            ? fontFamily[(markerIndex + 1)..]
+            : fontFamily;
     }
 }
