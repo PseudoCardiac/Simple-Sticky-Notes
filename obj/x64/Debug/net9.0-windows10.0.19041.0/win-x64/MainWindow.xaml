@@ -7,13 +7,13 @@
     mc:Ignorable="d"
     Title="Simple Sticky Notes">
 
-    <Grid x:ConnectionId='2' Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" AllowDrop="True"                                                      >
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid x:ConnectionId='3' x:Name="TitleBar" Grid.Row="0" Background="Transparent" Padding="9 9">
+        <Grid x:ConnectionId='2' x:Name="TitleBar" Grid.Row="0" Background="Transparent" Padding="9 9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -21,7 +21,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button x:ConnectionId='11'
+            <Button x:ConnectionId='10'
                 Grid.Column="0"
                 Width="32"
                 Height="32"
@@ -29,7 +29,7 @@
                 Background="Transparent"
                 BorderThickness="0"
                                            >
-                <FontIcon x:ConnectionId='18'
+                <FontIcon x:ConnectionId='17'
                     x:Name="NewIcon"
                     Glyph="&#xE710;" />
             </Button>
@@ -41,32 +41,46 @@
                 Padding="0"
                 Background="Transparent"
                 BorderThickness="0">
-                <FontIcon x:ConnectionId='15'
+                <FontIcon x:ConnectionId='14'
                     x:Name="FontIcon"
                     Glyph="&#xE8D2;" />
-                <Button.Resources>
-                    <MenuFlyout x:Key="FontMenuFlyout">
-                        <MenuFlyoutItem x:ConnectionId='16' Text="Delete"                                  />
-                    </MenuFlyout>
-                </Button.Resources>
+
                 <Button.Flyout>
                     <Flyout ShouldConstrainToRootBounds="False">
-                        <ListView x:ConnectionId='17'
-                            x:Name="FontList" 
-                            Width="200"
-                            SelectionMode="Single"
-                                                                            
-                            ContextFlyout="{StaticResource FontMenuFlyout}"
-                                                               />
+                        <Flyout.FlyoutPresenterStyle>
+                            <Style TargetType="FlyoutPresenter">
+                                <Setter Property="MaxWidth" Value="Infinity" />
+                            </Style>
+                        </Flyout.FlyoutPresenterStyle>
+                        
+                        <StackPanel Orientation="Horizontal" Spacing="16">
+                            <ListView x:ConnectionId='15'
+                                x:Name="UsingFontList" 
+                                Grid.Column="0"
+                                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                Width="200"
+                                Height="400"
+                                SelectionMode="Single"
+                                                                                />
+                            <ListView x:ConnectionId='16'
+                                x:Name="AllFontList" 
+                                Grid.Column="1"
+                                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                Width="200"
+                                Height="400"
+                                SelectionMode="None"
+                                                                                />
+                        </StackPanel>
+                            
                     </Flyout>
                 </Button.Flyout>
             </Button>
             
-            <Border x:ConnectionId='12'
+            <Border x:ConnectionId='11'
                 x:Name="LockedTitleDragRegion"
                 Grid.Column="2"/>
 
-            <Button x:ConnectionId='13'
+            <Button x:ConnectionId='12'
                 x:Name="CloseButton"
                 Grid.Column="3"
                 Width="32"
@@ -75,13 +89,13 @@
                 Background="Transparent"
                 BorderThickness="0"
                                          >
-                <FontIcon x:ConnectionId='14'
+                <FontIcon x:ConnectionId='13'
                     x:Name="CloseIcon"
                     Glyph="&#xF78A;" />
             </Button>
         </Grid>
         
-        <ListView x:ConnectionId='4'
+        <ListView x:ConnectionId='3'
             x:Name="NotesList"
             Grid.Row="1"
             IsItemClickEnabled="True"
@@ -92,17 +106,17 @@
             ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListView.ItemTemplate>
                 <DataTemplate                             xmlns:local="using:SimpleStickyNotes">
-                    <StackPanel x:ConnectionId='6'
+                    <StackPanel x:ConnectionId='5'
                             Orientation="Vertical"
                             Padding="16">
-                        <Border x:ConnectionId='7'                                                    CornerRadius="4">
+                        <Border x:ConnectionId='6'                                                    CornerRadius="4">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
                                 
-                                <TextBlock x:ConnectionId='8'
+                                <TextBlock x:ConnectionId='7'
                                     Grid.Column="0"
                                                                                 
                                                                                  
@@ -114,14 +128,14 @@
                                     TextTrimming="CharacterEllipsis"
                                     TextWrapping="Wrap" />
 
-                                <Button x:ConnectionId='9'
+                                <Button x:ConnectionId='8'
                                     Background="Transparent"
                                     Grid.Column="1"
                                     x:Name="DeleteButton"
                                     FontSize="18"
                                     Margin="16"
                                                               >
-                                    <FontIcon x:ConnectionId='10'
+                                    <FontIcon x:ConnectionId='9'
                                                                                     
                                         Glyph="&#xE74D;" />
                                 </Button>
@@ -134,8 +148,8 @@
         
         <Grid.ContextFlyout>
             <MenuFlyout>
-                <MenuFlyoutItem x:ConnectionId='19'                                     Text="Add font family" />
-                <MenuFlyoutItem x:ConnectionId='20'                                       Text="Import local font" />
+                <MenuFlyoutItem x:ConnectionId='18'                                     Text="Add font family" />
+                <MenuFlyoutItem x:ConnectionId='19'                                       Text="Import local font" />
                 <!-- <MenuFlyoutSubItem x:Name="RemoveFontMenu" Text="Remove font" /> -->
             </MenuFlyout>
         </Grid.ContextFlyout>

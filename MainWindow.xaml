@@ -7,7 +7,7 @@
     mc:Ignorable="d"
     Title="Simple Sticky Notes">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" AllowDrop="True" DragOver="MainWindow_DragOver" Drop="MainWindow_Drop">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -44,20 +44,34 @@
                 <FontIcon
                     x:Name="FontIcon"
                     Glyph="&#xE8D2;" />
-                <Button.Resources>
-                    <MenuFlyout x:Key="FontMenuFlyout">
-                        <MenuFlyoutItem Text="Delete" Click="FontMenuFlyoutItem_Click" />
-                    </MenuFlyout>
-                </Button.Resources>
+
                 <Button.Flyout>
                     <Flyout ShouldConstrainToRootBounds="False">
-                        <ListView
-                            x:Name="FontList" 
-                            Width="200"
-                            SelectionMode="Single"
-                            ItemsSource="{x:Bind FontFamilies, Mode=OneWay}"
-                            ContextFlyout="{StaticResource FontMenuFlyout}"
-                            RightTapped ="FontList_RightTapped"/>
+                        <Flyout.FlyoutPresenterStyle>
+                            <Style TargetType="FlyoutPresenter">
+                                <Setter Property="MaxWidth" Value="Infinity" />
+                            </Style>
+                        </Flyout.FlyoutPresenterStyle>
+                        
+                        <StackPanel Orientation="Horizontal" Spacing="16">
+                            <ListView
+                                x:Name="UsingFontList" 
+                                Grid.Column="0"
+                                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                Width="200"
+                                Height="400"
+                                SelectionMode="Single"
+                                ItemsSource="{x:Bind FontFamilies, Mode=OneWay}"/>
+                            <ListView
+                                x:Name="AllFontList" 
+                                Grid.Column="1"
+                                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                Width="200"
+                                Height="400"
+                                SelectionMode="None"
+                                ItemsSource="{x:Bind FontFamilies, Mode=OneWay}"/>
+                        </StackPanel>
+                            
                     </Flyout>
                 </Button.Flyout>
             </Button>
