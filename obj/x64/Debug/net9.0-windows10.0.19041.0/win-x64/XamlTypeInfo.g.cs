@@ -15,17 +15,17 @@ namespace SimpleStickyNotes
     public partial class App : global::Microsoft.UI.Xaml.Markup.IXamlMetadataProvider
     {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.UI.Xaml.Markup.Compiler"," 3.0.0.2511")]
-        private global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMetaDataProvider __appProvider;
+        private global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMetaDataProvider __appProvider;
 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.UI.Xaml.Markup.Compiler"," 3.0.0.2511")]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMetaDataProvider _AppProvider
+        private global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMetaDataProvider _AppProvider
         {
             get
             {
                 if (__appProvider == null)
                 {
-                    __appProvider = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMetaDataProvider();
+                    __appProvider = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMetaDataProvider();
                 }
                 return __appProvider;
             }
@@ -63,7 +63,7 @@ namespace SimpleStickyNotes
     }
 }
 
-namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
+namespace XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo
 {
     /// <summary>
     /// Main class for providing metadata for the app or library
@@ -72,15 +72,15 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     public sealed partial class XamlMetaDataProvider : global::Microsoft.UI.Xaml.Markup.IXamlMetadataProvider
     {
-        private global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlTypeInfoProvider _provider = null;
+        private global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlTypeInfoProvider _provider = null;
 
-        private global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlTypeInfoProvider Provider
+        private global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlTypeInfoProvider Provider
         {
             get
             {
                 if (_provider == null)
                 {
-                    _provider = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlTypeInfoProvider();
+                    _provider = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlTypeInfoProvider();
                 }
                 return _provider;
             }
@@ -130,7 +130,7 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
                 {
                     xamlType = CreateXamlType(typeIndex);
                 }
-                var userXamlType = xamlType as global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType;
+                var userXamlType = xamlType as global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType;
                 if(xamlType == null || (userXamlType != null && userXamlType.IsReturnTypeStub && !userXamlType.IsLocalType))
                 {
                     global::Microsoft.UI.Xaml.Markup.IXamlType libXamlType = CheckOtherMetadataProvidersForType(type);
@@ -169,7 +169,7 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
                 {
                     xamlType = CreateXamlType(typeIndex);
                 }
-                var userXamlType = xamlType as global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType;
+                var userXamlType = xamlType as global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType;
                 if(xamlType == null || (userXamlType != null && userXamlType.IsReturnTypeStub && !userXamlType.IsLocalType))
                 {
                     global::Microsoft.UI.Xaml.Markup.IXamlType libXamlType = CheckOtherMetadataProvidersForName(typeName);
@@ -335,8 +335,8 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
 
         private global::Microsoft.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
-            global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType xamlType = null;
-            global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType userType;
+            global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType xamlType = null;
+            global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType userType;
             string typeName = _typeNameTable[typeIndex];
             global::System.Type type = _typeTable[typeIndex];
 
@@ -344,7 +344,7 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
             {
 
             case 0:   //  Microsoft.UI.Xaml.Controls.XamlControlsResources
-                userType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.ResourceDictionary"));
+                userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.ResourceDictionary"));
                 userType.Activator = Activate_0_XamlControlsResources;
                 userType.StaticInitializer = StaticInitializer_0_XamlControlsResources;
                 userType.DictionaryAdd = MapAdd_0_XamlControlsResources;
@@ -353,19 +353,19 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
                 break;
 
             case 1:   //  Microsoft.UI.Xaml.ResourceDictionary
-                xamlType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                xamlType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
             case 2:   //  Object
-                xamlType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                xamlType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
             case 3:   //  Boolean
-                xamlType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                xamlType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
             case 4:   //  SimpleStickyNotes.MainWindow
-                userType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
+                userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
                 userType.Activator = Activate_4_MainWindow;
                 userType.StaticInitializer = StaticInitializer_4_MainWindow;
                 userType.SetIsLocalType();
@@ -373,11 +373,11 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
                 break;
 
             case 5:   //  Microsoft.UI.Xaml.Window
-                xamlType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                xamlType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
             case 6:   //  Microsoft.UI.Xaml.Controls.ColorPicker
-                userType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
+                userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
                 userType.Activator = Activate_6_ColorPicker;
                 userType.StaticInitializer = StaticInitializer_6_ColorPicker;
                 userType.AddMemberName("ColorSpectrumShape");
@@ -404,11 +404,11 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
                 break;
 
             case 7:   //  Microsoft.UI.Xaml.Controls.Control
-                xamlType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                xamlType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
             case 8:   //  Microsoft.UI.Xaml.Controls.ColorSpectrumShape
-                userType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
                 userType.StaticInitializer = StaticInitializer_8_ColorSpectrumShape;
                 userType.AddEnumValue("Box", global::Microsoft.UI.Xaml.Controls.ColorSpectrumShape.Box);
                 userType.AddEnumValue("Ring", global::Microsoft.UI.Xaml.Controls.ColorSpectrumShape.Ring);
@@ -416,25 +416,25 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
                 break;
 
             case 9:   //  System.Enum
-                userType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
                 userType.StaticInitializer = StaticInitializer_9_Enum;
                 xamlType = userType;
                 break;
 
             case 10:   //  System.ValueType
-                userType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.StaticInitializer = StaticInitializer_10_ValueType;
                 xamlType = userType;
                 break;
 
             case 11:   //  Windows.UI.Color
-                userType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
                 userType.StaticInitializer = StaticInitializer_11_Color;
                 xamlType = userType;
                 break;
 
             case 12:   //  Microsoft.UI.Xaml.Controls.ColorSpectrumComponents
-                userType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
                 userType.StaticInitializer = StaticInitializer_12_ColorSpectrumComponents;
                 userType.AddEnumValue("HueValue", global::Microsoft.UI.Xaml.Controls.ColorSpectrumComponents.HueValue);
                 userType.AddEnumValue("ValueHue", global::Microsoft.UI.Xaml.Controls.ColorSpectrumComponents.ValueHue);
@@ -446,15 +446,15 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
                 break;
 
             case 13:   //  Int32
-                xamlType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                xamlType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
             case 14:   //  Microsoft.UI.Xaml.Controls.Orientation
-                xamlType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                xamlType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
             case 15:   //  System.Nullable`1<Windows.UI.Color>
-                userType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
                 userType.SetBoxedType(GetXamlTypeByName("Windows.UI.Color"));
                 userType.BoxInstance = userType.BoxType<global::Windows.UI.Color>;
                 userType.StaticInitializer = StaticInitializer_15_Nullable;
@@ -463,14 +463,14 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
                 break;
 
             case 16:   //  SimpleStickyNotes.NoteWindow
-                userType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
+                userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
                 userType.StaticInitializer = StaticInitializer_16_NoteWindow;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
             case 17:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
-                userType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
+                userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
                 userType.Activator = Activate_17_TreeViewNode;
                 userType.StaticInitializer = StaticInitializer_17_TreeViewNode;
                 userType.AddMemberName("Children");
@@ -485,11 +485,11 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
                 break;
 
             case 18:   //  Microsoft.UI.Xaml.DependencyObject
-                xamlType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                xamlType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
             case 19:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
-                userType = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, null);
                 userType.StaticInitializer = StaticInitializer_19_IList;
                 userType.CollectionAdd = VectorAdd_19_IList;
                 userType.SetIsReturnTypeStub();
@@ -817,201 +817,201 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
 
         private global::Microsoft.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
-            global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember xamlMember = null;
-            global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType userType;
+            global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember xamlMember = null;
+            global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType userType;
 
             switch (longMemberName)
             {
             case "Microsoft.UI.Xaml.Controls.XamlControlsResources.UseCompactResources":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.XamlControlsResources");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "UseCompactResources", "Boolean");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.XamlControlsResources");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "UseCompactResources", "Boolean");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_0_XamlControlsResources_UseCompactResources;
                 xamlMember.Setter = set_0_XamlControlsResources_UseCompactResources;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.ColorSpectrumShape":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "ColorSpectrumShape", "Microsoft.UI.Xaml.Controls.ColorSpectrumShape");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "ColorSpectrumShape", "Microsoft.UI.Xaml.Controls.ColorSpectrumShape");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_1_ColorPicker_ColorSpectrumShape;
                 xamlMember.Setter = set_1_ColorPicker_ColorSpectrumShape;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.IsMoreButtonVisible":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsMoreButtonVisible", "Boolean");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsMoreButtonVisible", "Boolean");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_2_ColorPicker_IsMoreButtonVisible;
                 xamlMember.Setter = set_2_ColorPicker_IsMoreButtonVisible;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.IsColorSliderVisible":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsColorSliderVisible", "Boolean");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsColorSliderVisible", "Boolean");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_3_ColorPicker_IsColorSliderVisible;
                 xamlMember.Setter = set_3_ColorPicker_IsColorSliderVisible;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.IsColorChannelTextInputVisible":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsColorChannelTextInputVisible", "Boolean");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsColorChannelTextInputVisible", "Boolean");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_4_ColorPicker_IsColorChannelTextInputVisible;
                 xamlMember.Setter = set_4_ColorPicker_IsColorChannelTextInputVisible;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.IsHexInputVisible":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsHexInputVisible", "Boolean");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsHexInputVisible", "Boolean");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_5_ColorPicker_IsHexInputVisible;
                 xamlMember.Setter = set_5_ColorPicker_IsHexInputVisible;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.Color":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Color", "Windows.UI.Color");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Color", "Windows.UI.Color");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_6_ColorPicker_Color;
                 xamlMember.Setter = set_6_ColorPicker_Color;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.ColorSpectrumComponents":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "ColorSpectrumComponents", "Microsoft.UI.Xaml.Controls.ColorSpectrumComponents");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "ColorSpectrumComponents", "Microsoft.UI.Xaml.Controls.ColorSpectrumComponents");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_7_ColorPicker_ColorSpectrumComponents;
                 xamlMember.Setter = set_7_ColorPicker_ColorSpectrumComponents;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.IsAlphaEnabled":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsAlphaEnabled", "Boolean");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsAlphaEnabled", "Boolean");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_8_ColorPicker_IsAlphaEnabled;
                 xamlMember.Setter = set_8_ColorPicker_IsAlphaEnabled;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.IsAlphaSliderVisible":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsAlphaSliderVisible", "Boolean");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsAlphaSliderVisible", "Boolean");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_9_ColorPicker_IsAlphaSliderVisible;
                 xamlMember.Setter = set_9_ColorPicker_IsAlphaSliderVisible;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.IsAlphaTextInputVisible":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsAlphaTextInputVisible", "Boolean");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsAlphaTextInputVisible", "Boolean");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_10_ColorPicker_IsAlphaTextInputVisible;
                 xamlMember.Setter = set_10_ColorPicker_IsAlphaTextInputVisible;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.IsColorPreviewVisible":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsColorPreviewVisible", "Boolean");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsColorPreviewVisible", "Boolean");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_11_ColorPicker_IsColorPreviewVisible;
                 xamlMember.Setter = set_11_ColorPicker_IsColorPreviewVisible;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.IsColorSpectrumVisible":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsColorSpectrumVisible", "Boolean");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsColorSpectrumVisible", "Boolean");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_12_ColorPicker_IsColorSpectrumVisible;
                 xamlMember.Setter = set_12_ColorPicker_IsColorSpectrumVisible;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.MaxHue":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "MaxHue", "Int32");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "MaxHue", "Int32");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_13_ColorPicker_MaxHue;
                 xamlMember.Setter = set_13_ColorPicker_MaxHue;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.MaxSaturation":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "MaxSaturation", "Int32");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "MaxSaturation", "Int32");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_14_ColorPicker_MaxSaturation;
                 xamlMember.Setter = set_14_ColorPicker_MaxSaturation;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.MaxValue":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "MaxValue", "Int32");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "MaxValue", "Int32");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_15_ColorPicker_MaxValue;
                 xamlMember.Setter = set_15_ColorPicker_MaxValue;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.MinHue":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "MinHue", "Int32");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "MinHue", "Int32");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_16_ColorPicker_MinHue;
                 xamlMember.Setter = set_16_ColorPicker_MinHue;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.MinSaturation":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "MinSaturation", "Int32");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "MinSaturation", "Int32");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_17_ColorPicker_MinSaturation;
                 xamlMember.Setter = set_17_ColorPicker_MinSaturation;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.MinValue":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "MinValue", "Int32");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "MinValue", "Int32");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_18_ColorPicker_MinValue;
                 xamlMember.Setter = set_18_ColorPicker_MinValue;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.Orientation":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Orientation", "Microsoft.UI.Xaml.Controls.Orientation");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Orientation", "Microsoft.UI.Xaml.Controls.Orientation");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_19_ColorPicker_Orientation;
                 xamlMember.Setter = set_19_ColorPicker_Orientation;
                 break;
             case "Microsoft.UI.Xaml.Controls.ColorPicker.PreviousColor":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "PreviousColor", "System.Nullable`1<Windows.UI.Color>");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ColorPicker");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "PreviousColor", "System.Nullable`1<Windows.UI.Color>");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_20_ColorPicker_PreviousColor;
                 xamlMember.Setter = set_20_ColorPicker_PreviousColor;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Children":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Children", "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Children", "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>");
                 xamlMember.Getter = get_21_TreeViewNode_Children;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Content":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Content", "Object");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Content", "Object");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_22_TreeViewNode_Content;
                 xamlMember.Setter = set_22_TreeViewNode_Content;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Depth":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Depth", "Int32");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Depth", "Int32");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_23_TreeViewNode_Depth;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasChildren":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "HasChildren", "Boolean");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "HasChildren", "Boolean");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_24_TreeViewNode_HasChildren;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasUnrealizedChildren":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "HasUnrealizedChildren", "Boolean");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "HasUnrealizedChildren", "Boolean");
                 xamlMember.Getter = get_25_TreeViewNode_HasUnrealizedChildren;
                 xamlMember.Setter = set_25_TreeViewNode_HasUnrealizedChildren;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.IsExpanded":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsExpanded", "Boolean");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsExpanded", "Boolean");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.Getter = get_26_TreeViewNode_IsExpanded;
                 xamlMember.Setter = set_26_TreeViewNode_IsExpanded;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Parent":
-                userType = (global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
-                xamlMember = new global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Parent", "Microsoft.UI.Xaml.Controls.TreeViewNode");
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Parent", "Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember.Getter = get_27_TreeViewNode_Parent;
                 xamlMember.SetIsReadOnly();
                 break;
@@ -1074,10 +1074,10 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.UI.Xaml.Markup.Compiler"," 3.0.0.2511")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    internal partial class XamlUserType : global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType
+    internal partial class XamlUserType : global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType
         , global::Microsoft.UI.Xaml.Markup.IXamlType
     {
-        global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlTypeInfoProvider _provider;
+        global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlTypeInfoProvider _provider;
         global::Microsoft.UI.Xaml.Markup.IXamlType _baseType;
         global::Microsoft.UI.Xaml.Markup.IXamlType _boxedType;
         bool _isArray;
@@ -1092,7 +1092,7 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
         global::System.Collections.Generic.Dictionary<string, string> _memberNames;
         global::System.Collections.Generic.Dictionary<string, object> _enumValues;
 
-        public XamlUserType(global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlTypeInfoProvider provider, string fullName, 
+        public XamlUserType(global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlTypeInfoProvider provider, string fullName, 
             global::System.Type fullType, global::Microsoft.UI.Xaml.Markup.IXamlType baseType)
             :base(fullName, fullType)
         {
@@ -1309,7 +1309,7 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     internal partial class XamlMember : global::Microsoft.UI.Xaml.Markup.IXamlMember
     {
-        global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlTypeInfoProvider _provider;
+        global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlTypeInfoProvider _provider;
         string _name;
         bool _isAttachable;
         bool _isDependencyProperty;
@@ -1318,7 +1318,7 @@ namespace SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo
         string _typeName;
         string _targetTypeName;
 
-        public XamlMember(global::SimpleStickyNotes.SimpleStickyNotes_XamlTypeInfo.XamlTypeInfoProvider provider, string name, string typeName)
+        public XamlMember(global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlTypeInfoProvider provider, string name, string typeName)
         {
             _name = name;
             _typeName = typeName;
