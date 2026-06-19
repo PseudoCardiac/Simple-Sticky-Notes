@@ -248,25 +248,27 @@ public sealed partial class MainWindow : Window
     {
         if (sender == null) return;
 
-        var note = (sender as FrameworkElement).DataContext as NoteItem;
-        _notes.Remove(note);
-        SaveNotes();
+        if (sender is FrameworkElement elem) {
+            NoteItem? note = elem.DataContext as NoteItem;
+            if (note == null) return;
+            _notes.Remove(note);
+            SaveNotes();
+        }
     }
 
     private void FontList_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
     {
         if (e.Items == null) return;
 
-        foreach (string selection in _selectedFonts)
-        {
+        foreach (string selection in _selectedFonts) {
             _draggedFonts.Add(selection);
         }
-        
-        if (!_draggedFonts.Contains(e.Items[0] as string))
-        {
-            _draggedFonts.Add(e.Items[0] as string);
+
+        string item = (string) e.Items[0];
+        if (!_draggedFonts.Contains(item)) {
+            _draggedFonts.Add(item);
         }
-        
+
         _sourceListView = sender as ListView;
     }
 
@@ -311,12 +313,11 @@ public sealed partial class MainWindow : Window
 
     private void FontList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        foreach (var item in e.AddedItems)
-        {
-            _selectedFonts.Add(item as string);
+        foreach (var item in e.AddedItems) {
+            if (item is string font) _selectedFonts.Add(font);
         }
         foreach (var item in e.RemovedItems) {
-            _selectedFonts.Remove(item as string);
+            if (item is string font) _selectedFonts.Remove(font);
         }
     }
 

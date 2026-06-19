@@ -1,0 +1,171 @@
+﻿<Window x:ConnectionId='1'
+    x:Class="SimpleStickyNotes.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Simple Sticky Notes">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:ConnectionId='2' x:Name="TitleBar" Grid.Row="0" Background="Transparent" Padding="9 9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:ConnectionId='10'
+                Grid.Column="0"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderThickness="0"
+                                           >
+                <FontIcon x:ConnectionId='17'
+                    x:Name="NewIcon"
+                    Glyph="&#xE710;" />
+            </Button>
+
+            <Button
+                Grid.Column="1"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderThickness="0">
+                <FontIcon x:ConnectionId='14'
+                    x:Name="FontIcon"
+                    Glyph="&#xE8D2;" />
+
+                <Button.Flyout>
+                    <Flyout ShouldConstrainToRootBounds="False">
+                        <Flyout.FlyoutPresenterStyle>
+                            <Style TargetType="FlyoutPresenter">
+                                <Setter Property="MaxWidth" Value="Infinity" />
+                            </Style>
+                        </Flyout.FlyoutPresenterStyle>
+                        
+                        <StackPanel Orientation="Horizontal" Spacing="16">
+                            <StackPanel Orientation="Vertical" Spacing="16">
+                                <TextBlock Text="Using" />
+                                <ListView x:ConnectionId='16'
+                                x:Name="UsingFontList" 
+                                Grid.Column="0"
+                                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                Width="200"
+                                Height="400"
+                                SelectionMode="Extended"
+                                                                            
+                                                                                     
+                                CanDragItems="True"
+                                                            
+                                                                              
+                                                                                
+                                                    
+                                AllowDrop="True"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Spacing="16">
+                                <TextBlock Text="Installed" />
+                                <ListView x:ConnectionId='15'
+                                x:Name="AllFontList"
+                                Grid.Column="1"
+                                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                Width="200"
+                                Height="400"
+                                SelectionMode="Extended"
+                                                                            
+                                                                                       
+                                CanDragItems="True"
+                                                            
+                                                                              
+                                                                                
+                                                    
+                                AllowDrop="True"/>
+                            </StackPanel>
+                        </StackPanel>
+                            
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+            
+            <Border x:ConnectionId='11'
+                x:Name="LockedTitleDragRegion"
+                Grid.Column="2"/>
+
+            <Button x:ConnectionId='12'
+                x:Name="CloseButton"
+                Grid.Column="3"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderThickness="0"
+                                         >
+                <FontIcon x:ConnectionId='13'
+                    x:Name="CloseIcon"
+                    Glyph="&#xF78A;" />
+            </Button>
+        </Grid>
+        
+        <ListView x:ConnectionId='3'
+            x:Name="NotesList"
+            Grid.Row="1"
+            IsItemClickEnabled="True"
+                                           
+            Padding="8"
+            SelectionMode="None"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+            <ListView.ItemTemplate>
+                <DataTemplate                             xmlns:local="using:SimpleStickyNotes">
+                    <StackPanel x:ConnectionId='5'
+                            Orientation="Vertical"
+                            Padding="16">
+                        <Border x:ConnectionId='6'                                                    CornerRadius="4">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock x:ConnectionId='7'
+                                    Grid.Column="0"
+                                                                                
+                                                                                 
+                                    FontSize="18"
+                                    MaxLines="2"
+                                    Padding="16"
+                                    Margin="16"
+                                                                        
+                                    TextTrimming="CharacterEllipsis"
+                                    TextWrapping="Wrap" />
+
+                                <Button x:ConnectionId='8'
+                                    Background="Transparent"
+                                    Grid.Column="1"
+                                    x:Name="DeleteButton"
+                                    FontSize="18"
+                                    Margin="16"
+                                                              >
+                                    <FontIcon x:ConnectionId='9'
+                                                                                    
+                                        Glyph="&#xE74D;" />
+                                </Button>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
+</Window>
+

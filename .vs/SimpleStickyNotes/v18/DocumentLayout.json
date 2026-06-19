@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|c:\\users\\nooye\\documents\\codex\\2026-06-15\\11-ui-winui\\outputs\\simplestickynotes\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|c:\\users\\nooye\\documents\\codex\\2026-06-15\\11-ui-winui\\outputs\\simplestickynotes\\notewindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|solutionrelative:notewindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|c:\\users\\nooye\\documents\\codex\\2026-06-15\\11-ui-winui\\outputs\\simplestickynotes\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|solutionrelative:app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
@@ -19,16 +27,8 @@
       "RelativeMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|c:\\users\\nooye\\documents\\codex\\2026-06-15\\11-ui-winui\\outputs\\simplestickynotes\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|c:\\users\\nooye\\documents\\codex\\2026-06-15\\11-ui-winui\\outputs\\simplestickynotes\\notewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|solutionrelative:notewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|c:\\users\\nooye\\documents\\codex\\2026-06-15\\11-ui-winui\\outputs\\simplestickynotes\\notewindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|solutionrelative:notewindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A4E7F4C5-4D78-8F73-4216-2C339EB9D1A5}|SimpleStickyNotes.csproj|c:\\users\\nooye\\documents\\codex\\2026-06-15\\11-ui-winui\\outputs\\simplestickynotes\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
@@ -42,11 +42,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "app.manifest",
               "DocumentMoniker": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\app.manifest",
               "RelativeDocumentMoniker": "app.manifest",
@@ -59,7 +59,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\App.xaml.cs",
               "RelativeDocumentMoniker": "App.xaml.cs",
@@ -67,12 +67,11 @@
               "RelativeToolTip": "App.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-19T11:37:10.49Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-19T11:37:10.49Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\App.xaml",
               "RelativeDocumentMoniker": "App.xaml",
@@ -80,12 +79,11 @@
               "RelativeToolTip": "App.xaml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-06-19T11:36:30.387Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-19T11:36:30.387Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
@@ -93,25 +91,24 @@
               "RelativeToolTip": "MainWindow.xaml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-06-19T11:29:56.576Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-19T11:29:56.576Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAAAA4AAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAADABAAAAAAAAAAAmwD0BAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-19T11:29:52.004Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "NoteWindow.xaml",
               "DocumentMoniker": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\NoteWindow.xaml",
               "RelativeDocumentMoniker": "NoteWindow.xaml",
@@ -119,12 +116,11 @@
               "RelativeToolTip": "NoteWindow.xaml",
               "ViewState": "AgIAAJ8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-06-19T11:29:47.08Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-19T11:29:47.08Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "NoteWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\NoteWindow.xaml.cs",
               "RelativeDocumentMoniker": "NoteWindow.xaml.cs",
