@@ -1,25 +1,19 @@
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Windows.Graphics;
 using Windows.UI;
-using WinRT.Interop;
 
 namespace SimpleStickyNotes;
 
 
 public sealed partial class NoteWindow : Window
 {
-    private const int WmNclButtonDown = 0x00A1;
-    private const int HtCaption = 0x0002;
-
     private readonly NoteItem _note;
     private readonly Func<IReadOnlyList<string>> _getFontFamilies;
     private readonly Action _saveNotes;
@@ -181,14 +175,6 @@ public sealed partial class NoteWindow : Window
         }
         DisableTitleBarDoubleClick();
     }
-
-    private void StartWindowDrag()
-    {
-        var windowHandle = WindowNative.GetWindowHandle(this);
-        ReleaseCapture();
-        SendMessage(windowHandle, WmNclButtonDown, HtCaption, 0);
-    }
-
     private void ApplyLockState()
     {
         NoteBox.IsReadOnly = _isTextLocked;
@@ -199,22 +185,6 @@ public sealed partial class NoteWindow : Window
         //LockedBodyDragRegion.Visibility = _isTextLocked ? Visibility.Visible : Visibility.Collapsed;
         LockIcon.Glyph = _isTextLocked ? "\uE72E" : "\uE785";
     }
-
-    //private void DragHandle_PointerPressed(object sender, PointerRoutedEventArgs e)
-    //{
-    //    if (e.GetCurrentPoint(null).Properties.IsLeftButtonPressed)
-    //    {
-    //        StartWindowDrag();
-    //    }
-    //}
-
-    private void LockedDragRegion_PointerPressed(object sender, PointerRoutedEventArgs e)
-    {
-        if (_isTextLocked && e.GetCurrentPoint(null).Properties.IsLeftButtonPressed) {
-            StartWindowDrag();
-        }
-    }
-
     private void LockButton_Click(object sender, RoutedEventArgs e)
     {
         _isTextLocked = !_isTextLocked;
@@ -228,12 +198,6 @@ public sealed partial class NoteWindow : Window
             Close();
         }
     }
-
-    private void OpenListMenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        _showListWindow();
-    }
-
     private void PinButton_Click(object sender, RoutedEventArgs e)
     {
         _isAlwaysOnTop = !_isAlwaysOnTop;
@@ -280,12 +244,6 @@ public sealed partial class NoteWindow : Window
         _note.Text = NoteBox.Text;
         _saveNotes();
     }
-
-    [DllImport("user32.dll")]
-    private static extern bool ReleaseCapture();
-
-    [DllImport("user32.dll")]
-    private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
     private void ColorPicker_ColorChanged(ColorPicker sender, ColorChangedEventArgs args)
     {

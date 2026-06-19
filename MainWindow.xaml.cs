@@ -2,9 +2,6 @@ using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,29 +9,18 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Background;
-using Windows.ApplicationModel.DataTransfer;
 using Windows.Graphics;
-using Windows.Storage;
-using Windows.Storage.Pickers;
-using Windows.UI;
 using WinRT.Interop;
 
 using System.Drawing;
 using System.Drawing.Text;
-using Windows.ApplicationModel.Activation;
 
 namespace SimpleStickyNotes;
 
 public sealed partial class MainWindow : Window
 {
-    private const int WmNclButtonDown = 0x00A1;
-    private const int HtCaption = 0x0002;
-
     private static readonly string SettingsDirectory =
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SimpleStickyNotes");
 
@@ -245,70 +231,6 @@ public sealed partial class MainWindow : Window
         }
     }
 
-    private async void AddFontFamilyMenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        var input = new TextBox
-        {
-            PlaceholderText = "Font family name",
-            MinWidth = 260
-        };
-
-        var dialog = new ContentDialog
-        {
-            XamlRoot = Content.XamlRoot,
-            Title = "Add font family",
-            Content = input,
-            PrimaryButtonText = "Add",
-            CloseButtonText = "Cancel",
-            DefaultButton = ContentDialogButton.Primary
-        };
-
-        if (await dialog.ShowAsync() != ContentDialogResult.Primary)
-        {
-            return;
-        }
-
-        AddFontFamily(input.Text.Trim());
-    }
-
-    private async void ImportLocalFontMenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        var picker = new FileOpenPicker();
-        picker.FileTypeFilter.Add(".ttf");
-        picker.FileTypeFilter.Add(".otf");
-        StorageFolder fontsFolder = await StorageFolder.GetFolderFromPathAsync(@"C:\Windows\Fonts");
-        //picker.SuggestedStartFolder = fontsFolder;
-        picker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
-
-        var windowHandle = WindowNative.GetWindowHandle(this);
-        InitializeWithWindow.Initialize(picker, windowHandle);
-
-        var file = await picker.PickSingleFileAsync();
-        if (file is null)
-        {
-            return;
-        }
-
-        Directory.CreateDirectory(FontsDirectory);
-        var destination = Path.Combine(FontsDirectory, file.Name);
-        File.Copy(file.Path, destination, true);
-
-        var fontName = Path.GetFileNameWithoutExtension(destination);
-        AddFontFamily($"{new Uri(destination).AbsoluteUri}#{fontName}");
-    }
-
-    private void AddFontFamily(string fontFamily)
-    {
-        if (string.IsNullOrWhiteSpace(fontFamily) || UsingFontFamilies.Contains(fontFamily))
-        {
-            return;
-        }
-
-        UsingFontFamilies.Add(fontFamily);
-        SaveSettings();
-        RefreshOpenNoteFonts();
-    }
-
     private void RefreshOpenNoteFonts()
     {
         foreach (var noteWindow in _openNoteWindows.Values)
@@ -385,12 +307,6 @@ public sealed partial class MainWindow : Window
     {
         _draggedFonts = [];
         _sourceListView = null;
-    }
-
-    private static void PlaySound()
-    {
-        ElementSoundPlayer.State = ElementSoundPlayerState.On;
-        ElementSoundPlayer.Play(ElementSoundKind.Invoke);
     }
 
     private void FontList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -567,13 +483,5 @@ public sealed class NoteItem : INotifyPropertyChanged
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    private static string GetFontDisplayName(string fontFamily)
-    {
-        var markerIndex = fontFamily.LastIndexOf('#');
-        return markerIndex >= 0 && markerIndex < fontFamily.Length - 1
-            ? fontFamily[(markerIndex + 1)..]
-            : fontFamily;
     }
 }
