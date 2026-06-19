@@ -54,22 +54,42 @@
                         </Flyout.FlyoutPresenterStyle>
                         
                         <StackPanel Orientation="Horizontal" Spacing="16">
-                            <ListView
+                            <StackPanel Orientation="Vertical" Spacing="16">
+                                <TextBlock Text="Using" />
+                                <ListView
                                 x:Name="UsingFontList" 
                                 Grid.Column="0"
                                 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                                 Width="200"
                                 Height="400"
-                                SelectionMode="Single"
-                                ItemsSource="{x:Bind FontFamilies, Mode=OneWay}"/>
-                            <ListView
-                                x:Name="AllFontList" 
+                                SelectionMode="Extended"
+                                SelectionChanged="FontList_SelectionChanged"
+                                ItemsSource="{x:Bind UsingFontFamilies, Mode=OneWay}"
+                                CanDragItems="True"
+                                DragOver="FontList_DragOver"
+                                DragItemsStarting="FontList_DragItemsStarting"
+                                DragItemsCompleted="FontList_DragItemsCompleted"
+                                Drop="FontList_Drop"
+                                AllowDrop="True"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Spacing="16">
+                                <TextBlock Text="Installed" />
+                                <ListView
+                                x:Name="AllFontList"
                                 Grid.Column="1"
                                 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                                 Width="200"
                                 Height="400"
-                                SelectionMode="None"
-                                ItemsSource="{x:Bind FontFamilies, Mode=OneWay}"/>
+                                SelectionMode="Extended"
+                                SelectionChanged="FontList_SelectionChanged"
+                                ItemsSource="{x:Bind StandbyFontFamilies, Mode=OneWay}"
+                                CanDragItems="True"
+                                DragOver="FontList_DragOver"
+                                DragItemsStarting="FontList_DragItemsStarting"
+                                DragItemsCompleted="FontList_DragItemsCompleted"
+                                Drop="FontList_Drop"
+                                AllowDrop="True"/>
+                            </StackPanel>
                         </StackPanel>
                             
                     </Flyout>
@@ -145,14 +165,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-        <Grid.ContextFlyout>
-            <MenuFlyout>
-                <MenuFlyoutItem Click="AddFontFamilyMenuItem_Click" Text="Add font family" />
-                <MenuFlyoutItem Click="ImportLocalFontMenuItem_Click" Text="Import local font" />
-                <!-- <MenuFlyoutSubItem x:Name="RemoveFontMenu" Text="Remove font" /> -->
-            </MenuFlyout>
-        </Grid.ContextFlyout>
     </Grid>
 
 </Window>

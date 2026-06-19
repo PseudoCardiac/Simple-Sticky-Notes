@@ -54,22 +54,42 @@
                         </Flyout.FlyoutPresenterStyle>
                         
                         <StackPanel Orientation="Horizontal" Spacing="16">
-                            <ListView x:ConnectionId='15'
+                            <StackPanel Orientation="Vertical" Spacing="16">
+                                <TextBlock Text="Using" />
+                                <ListView x:ConnectionId='16'
                                 x:Name="UsingFontList" 
                                 Grid.Column="0"
                                 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                                 Width="200"
                                 Height="400"
-                                SelectionMode="Single"
-                                                                                />
-                            <ListView x:ConnectionId='16'
-                                x:Name="AllFontList" 
+                                SelectionMode="Extended"
+                                                                            
+                                                                                     
+                                CanDragItems="True"
+                                                            
+                                                                              
+                                                                                
+                                                    
+                                AllowDrop="True"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Spacing="16">
+                                <TextBlock Text="Installed" />
+                                <ListView x:ConnectionId='15'
+                                x:Name="AllFontList"
                                 Grid.Column="1"
                                 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                                 Width="200"
                                 Height="400"
-                                SelectionMode="None"
-                                                                                />
+                                SelectionMode="Extended"
+                                                                            
+                                                                                       
+                                CanDragItems="True"
+                                                            
+                                                                              
+                                                                                
+                                                    
+                                AllowDrop="True"/>
+                            </StackPanel>
                         </StackPanel>
                             
                     </Flyout>
@@ -145,14 +165,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-        <Grid.ContextFlyout>
-            <MenuFlyout>
-                <MenuFlyoutItem x:ConnectionId='18'                                     Text="Add font family" />
-                <MenuFlyoutItem x:ConnectionId='19'                                       Text="Import local font" />
-                <!-- <MenuFlyoutSubItem x:Name="RemoveFontMenu" Text="Remove font" /> -->
-            </MenuFlyout>
-        </Grid.ContextFlyout>
     </Grid>
 
 </Window>

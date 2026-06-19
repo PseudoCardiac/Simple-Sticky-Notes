@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 using Windows.Graphics;
 using Windows.UI;
 using WinRT.Interop;
@@ -52,7 +53,7 @@ public sealed partial class NoteWindow : Window
         ResizeWindow(400, 400);
         LoadNote();
         ApplyLockState();
-        SetTitleBar(HandleButton);
+        SetTitleBar(LockedTitleDragRegion);
         DisableTitleBarDoubleClick();
         SetBackgroundColor();
         SetTextColor(IsLight(_note.BackgroundColor));
@@ -95,22 +96,25 @@ public sealed partial class NoteWindow : Window
     public void RefreshFonts()
     {
         FontMenu.Items.Clear();
-        LockedFontMenu.Items.Clear();
         BuildFontMenu(FontMenu);
-        BuildFontMenu(LockedFontMenu);
     }
 
     private void BuildContextMenu()
     {
         BuildFontMenu(FontMenu);
-        BuildFontMenu(LockedFontMenu);
     }
 
-    private void BuildFontMenu(MenuFlyoutSubItem fontMenu)
+    private void BuildFontMenu(MenuFlyout fontMenu)
     {
         foreach (var fontFamily in _getFontFamilies()) {
-            var item = new MenuFlyoutItem { Text = GetFontDisplayName(fontFamily), Tag = fontFamily };
+            var item = new RadioMenuFlyoutItem { Text = GetFontDisplayName(fontFamily), Tag = fontFamily };
             item.Click += FontMenuItem_Click;
+            
+            if (_note.FontFamily == fontFamily)
+            {
+                item.IsChecked = true;
+            }
+
             fontMenu.Items.Add(item);
         }
     }
@@ -150,6 +154,7 @@ public sealed partial class NoteWindow : Window
 
     private void ResizeWindow(int width, int height)
     {
+        AppWindow.Move(new PointInt32(Cursor.Position.X - width / 2, Cursor.Position.Y - height / 2));
         AppWindow.Resize(new SizeInt32(width, height));
     }
 
@@ -172,7 +177,7 @@ public sealed partial class NoteWindow : Window
         if (_isTextLocked) {
             this.SetTitleBar(RootGrid);
         } else {
-            this.SetTitleBar(HandleButton);
+            this.SetTitleBar(LockedTitleDragRegion);
         }
         DisableTitleBarDoubleClick();
     }
@@ -187,7 +192,6 @@ public sealed partial class NoteWindow : Window
     private void ApplyLockState()
     {
         NoteBox.IsReadOnly = _isTextLocked;
-        HandleButton.IsEnabled = !_isTextLocked;
         CloseButton.IsEnabled = !_isTextLocked;
         FontSizeSlider.IsEnabled = !_isTextLocked;
         TitleBar.Visibility = _isTextLocked ? Visibility.Collapsed : Visibility.Visible;
@@ -292,7 +296,6 @@ public sealed partial class NoteWindow : Window
         _saveNotes();
 
         bool isLight = IsLight(backgroundBrush.Color.ToString());
-        IsDarkBlock.Text = isLight.ToString();
         SetTextColor(isLight);
     }
 
@@ -318,7 +321,6 @@ public sealed partial class NoteWindow : Window
         TextColor3.Color = textColor;
         NoteBox.Text = NoteBox.Text + " ";
         NoteBox.Text = NoteBox.Text[..^1];
-        HandleButton.Foreground = textBrush;
         PinButton.Foreground = textBrush;
         ColorButton.Foreground = textBrush;
         CloseButton.Foreground = textBrush;

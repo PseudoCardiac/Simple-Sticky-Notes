@@ -31,24 +31,10 @@
                 <SolidColorBrush x:Name="IconColor2" x:Key="TextControlForegroundPointerOver" Color="#1A1A1A"/>
                 <SolidColorBrush x:Name="IconColor3" x:Key="TextControlForegroundFocused" Color="#1A1A1A"/>
             </Grid.Resources>
-            
-            <Button
-                x:Name="HandleButton"
-                Grid.Column="0"
-                Width="32"
-                Height="32"
-                Padding="0"
-                Background="Transparent"
-                Foreground="#1A1A1A"
-                BorderThickness="0">
-                <FontIcon
-                    x:Name="HandleIcon"
-                    Glyph="&#xE7C2;" />
-            </Button>
 
             <Button
                 x:Name="PinButton"
-                Grid.Column="1"
+                Grid.Column="0"
                 Width="32"
                 Height="32"
                 Padding="0"
@@ -63,7 +49,7 @@
             
             <Button
                 x:Name="ColorButton"
-                Grid.Column="2"
+                Grid.Column="1"
                 Width="32"
                 Height="32"
                 Padding="0"
@@ -75,28 +61,26 @@
                     Glyph="&#xE790;" />
                 <Button.Flyout>
                     <Flyout ShouldConstrainToRootBounds="False">
-                        <StackPanel>
-                            <ColorPicker x:Name="ColorPicker"
-                                ColorSpectrumShape="Ring"
-                                IsMoreButtonVisible="False"
-                                IsColorSliderVisible="True"
-                                IsColorChannelTextInputVisible="False"
-                                IsHexInputVisible="False"
-                                ColorChanged="ColorPicker_ColorChanged" />
-                            <TextBlock x:Name="IsDarkBlock" Text="asdf" />
-                        </StackPanel>
+                        <ColorPicker x:Name="ColorPicker"
+                            ColorSpectrumShape="Ring"
+                            IsMoreButtonVisible="False"
+                            IsColorSliderVisible="True"
+                            IsColorChannelTextInputVisible="False"
+                            IsHexInputVisible="False"
+                            ColorChanged="ColorPicker_ColorChanged"
+                            Color="{x:Bind _note.BackgroundColor}" />
                     </Flyout>
                 </Button.Flyout>
             </Button>
             
             <Border
                 x:Name="LockedTitleDragRegion"
-                Grid.Column="3"
+                Grid.Column="2"
                 Background="Transparent"/>
 
             <Button
                 x:Name="CloseButton"
-                Grid.Column="4"
+                Grid.Column="3"
                 Width="32"
                 Height="32"
                 Padding="0"
@@ -123,9 +107,7 @@
                 VerticalAlignment="Stretch"
                 VerticalContentAlignment="Top">
                 <TextBox.ContextFlyout>
-                    <MenuFlyout>
-                        <MenuFlyoutSubItem x:Name="FontMenu" Text="글꼴" />
-                    </MenuFlyout>
+                    <MenuFlyout x:Name="FontMenu"/>
                 </TextBox.ContextFlyout>
                 <TextBox.Resources>
                     <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
@@ -146,15 +128,7 @@
             <Border
                 x:Name="LockedBodyDragRegion"
                 Background="Transparent"
-                Visibility="Collapsed">
-                <Border.ContextFlyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem Click="OpenListMenuItem_Click" Text="Open note list" />
-                        <MenuFlyoutSeparator />
-                        <MenuFlyoutSubItem x:Name="LockedFontMenu" Text="Font" />
-                    </MenuFlyout>
-                </Border.ContextFlyout>
-            </Border>
+                Visibility="Collapsed" />
         </Grid>
 
         <Grid Grid.Row="2" x:Name="SliderAndLockGrid" Background="Transparent" Padding="9 9">

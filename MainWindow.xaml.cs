@@ -44,25 +44,56 @@ public sealed partial class MainWindow : Window
 
     private readonly ObservableCollection<NoteItem> _notes = [];
     private readonly Dictionary<Guid, NoteWindow> _openNoteWindows = [];
-    public readonly ObservableCollection<string> FontFamilies = [];
+    public readonly ObservableCollection<string> UsingFontFamilies = [];
+    public readonly ObservableCollection<string> StandbyFontFamilies = [];
     public string _defaultFontFamily = "Segoe UI";
 
     private InstalledFontCollection _installedFontCollection;
-    private FontFamily[] _installedFontFamilies;
+
+    private ObservableCollection<string> _selectedFonts = [];
+    private ObservableCollection<string> _draggedFonts = [];
+    private ListView? _sourceListView;
 
     public MainWindow()
     {
+        _installedFontCollection = new InstalledFontCollection();
         InitializeComponent();
         ResizeWindow(400, 600);
+        CenterWindow();
         LoadSettings();
         LoadNotes();
         ExtendsContentIntoTitleBar = true;
         HideTitleBar();
         SetTitleBar(TitleBar);
         NotesList.ItemsSource = _notes;
+    }
+    private void CenterWindow()
+    {
+        // 1. Get the HWND handle for the WinUI 3 window
+        var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
 
-        _installedFontCollection = new InstalledFontCollection();
-        _installedFontFamilies = _installedFontCollection.Families;
+        // 2. Get the WindowId from the HWND handle
+        var windowId = Win32Interop.GetWindowIdFromWindow(hWnd);
+
+        // 3. Retrieve the AppWindow object managing the viewport
+        var appWindow = AppWindow.GetFromWindowId(windowId);
+
+        if (appWindow != null) {
+            // 4. Retrieve the current display area information
+            var displayArea = DisplayArea.GetFromWindowId(windowId, DisplayAreaFallback.Nearest);
+
+            if (displayArea != null) {
+                var displayBounds = displayArea.WorkArea;
+                var windowSize = appWindow.Size;
+
+                // 5. Calculate centered coordinates considering taskbars/scaling
+                int centerX = displayBounds.X + ((displayBounds.Width - windowSize.Width) / 2);
+                int centerY = displayBounds.Y + ((displayBounds.Height - windowSize.Height) / 2);
+
+                // 6. Move the window to the calculated point
+                appWindow.Move(new PointInt32(centerX, centerY));
+            }
+        }
     }
     private void HideTitleBar()
     {
@@ -85,17 +116,37 @@ public sealed partial class MainWindow : Window
 
     public IReadOnlyList<string> GetFontFamilies()
     {
-        return FontFamilies.ToArray();
+        return UsingFontFamilies.ToArray();
     }
 
     private void LoadSettings()
     {
-        foreach (var fontFamily in ReadSettings().FontFamilies)
+        foreach (FontFamily family in _installedFontCollection.Families)
         {
-            if (!string.IsNullOrWhiteSpace(fontFamily) && !FontFamilies.Contains(fontFamily))
+            StandbyFontFamilies.Add(family.Name);
+        }
+
+        foreach (var fontFamily in ReadSettings().UsingFontFamilies)
+        {
+            if (!string.IsNullOrWhiteSpace(fontFamily) && !UsingFontFamilies.Contains(fontFamily))
             {
-                FontFamilies.Add(fontFamily);
+                UsingFontFamilies.Add(fontFamily);
             }
+        }
+
+        HashSet<string> standbySet = [.. StandbyFontFamilies];
+        HashSet<string> usingSet = [.. UsingFontFamilies];
+        foreach (string font in usingSet)
+        {
+            if (!standbySet.Contains(font))
+            {
+                UsingFontFamilies.Remove(font);
+            }
+        }
+
+        foreach (string font in UsingFontFamilies) 
+        {
+            StandbyFontFamilies.Remove(font);
         }
 
         if (!string.IsNullOrWhiteSpace(ReadSettings().DefaultFontFamily))
@@ -129,7 +180,7 @@ public sealed partial class MainWindow : Window
     {
         Directory.CreateDirectory(SettingsDirectory);
 
-        var settings = new AppSettings([.. FontFamilies], _defaultFontFamily);
+        var settings = new AppSettings([.. UsingFontFamilies], [.. StandbyFontFamilies], _defaultFontFamily);
         var json = JsonSerializer.Serialize(settings, jsonSerializerOptions);
         File.WriteAllText(SettingsPath, json);
     }
@@ -246,60 +297,16 @@ public sealed partial class MainWindow : Window
         AddFontFamily($"{new Uri(destination).AbsoluteUri}#{fontName}");
     }
 
-    private void Font_Click(object sender, RoutedEventArgs e)
-    {
-        if (sender is not MenuFlyoutItem { Tag: string fontFamily })
-        {
-            return;
-        }
-
-        FontFamilies.Remove(fontFamily);
-        SaveSettings();
-        NormalizeNoteFonts();
-        RefreshOpenNoteFonts();
-    }
-
     private void AddFontFamily(string fontFamily)
     {
-        if (string.IsNullOrWhiteSpace(fontFamily) || FontFamilies.Contains(fontFamily))
+        if (string.IsNullOrWhiteSpace(fontFamily) || UsingFontFamilies.Contains(fontFamily))
         {
             return;
         }
 
-        FontFamilies.Add(fontFamily);
+        UsingFontFamilies.Add(fontFamily);
         SaveSettings();
         RefreshOpenNoteFonts();
-    }
-
-    private void RemoveFontFamily(string fontFamily)
-    {
-        if (string.IsNullOrWhiteSpace(fontFamily) || FontFamilies.Contains(fontFamily)) {
-            return;
-        }
-
-        FontFamilies.Remove(fontFamily);
-        SaveSettings();
-        RefreshOpenNoteFonts();
-    }
-
-    private void NormalizeNoteFonts()
-    {
-        var fallback = "Segoe UI";
-
-        foreach (var note in _notes.Where(note => !FontFamilies.Contains(note.FontFamily)))
-        {
-            note.FontFamily = fallback;
-        }
-
-        SaveNotes();
-    }
-
-    private static string GetFontDisplayName(string fontFamily)
-    {
-        var markerIndex = fontFamily.LastIndexOf('#');
-        return markerIndex >= 0 && markerIndex < fontFamily.Length - 1
-            ? fontFamily[(markerIndex + 1)..]
-            : fontFamily;
     }
 
     private void RefreshOpenNoteFonts()
@@ -324,50 +331,80 @@ public sealed partial class MainWindow : Window
         SaveNotes();
     }
 
-    private void FontMenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+    private void FontList_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
     {
-        if (_selectedContextItem != null) {
-            FontFamilies.Remove(_selectedContextItem);    
+        if (e.Items == null) return;
 
-            SaveSettings();
-            RefreshOpenNoteFonts();
+        foreach (string selection in _selectedFonts)
+        {
+            _draggedFonts.Add(selection);
+        }
+        
+        if (!_draggedFonts.Contains(e.Items[0] as string))
+        {
+            _draggedFonts.Add(e.Items[0] as string);
+        }
+        
+        _sourceListView = sender as ListView;
+    }
+
+    private void FontList_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
+    {
+        ResetDragState();
+        SaveSettings();
+        RefreshOpenNoteFonts();
+    }
+
+    private void FontList_DragOver(object sender, DragEventArgs e)
+    {
+        e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Move;
+    }
+
+    private async void FontList_Drop(object sender, DragEventArgs e)
+    {
+        if (_draggedFonts.Count < 1 || _sourceListView == null) return;
+
+        var targetListView = sender as ListView;
+
+        if (targetListView == null) return;
+
+        var sourceCollection = _sourceListView.ItemsSource as ObservableCollection<string>;
+        var targetCollection = targetListView.ItemsSource as ObservableCollection<string>;
+
+        if (sourceCollection == null || targetCollection == null) return;
+
+        foreach (string font in _draggedFonts)
+        {
+            sourceCollection.Remove(font);
+            targetCollection.Add(font);
+        }
+        ResetDragState();
+    }
+
+    private void ResetDragState()
+    {
+        _draggedFonts = [];
+        _sourceListView = null;
+    }
+
+    private static void PlaySound()
+    {
+        ElementSoundPlayer.State = ElementSoundPlayerState.On;
+        ElementSoundPlayer.Play(ElementSoundKind.Invoke);
+    }
+
+    private void FontList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        foreach (var item in e.AddedItems)
+        {
+            _selectedFonts.Add(item as string);
+        }
+        foreach (var item in e.RemovedItems) {
+            _selectedFonts.Remove(item as string);
         }
     }
-    
-    private string? _selectedContextItem;
-    private void FontList_RightTapped(object sender, RightTappedRoutedEventArgs e)
-    {
-        if (e.OriginalSource is FrameworkElement element &&
-        element.DataContext is string item) {
-            _selectedContextItem = item;
-        }
-    }
 
-    private async void MainWindow_Drop(object sender, DragEventArgs e)
-    {
-        //InstalledFontCollection installedFontCollection = new();
-        //FontFamily[] fontFamilies;
-        //fontFamilies = installedFontCollection.Families;
-
-        //for (int i = 0; i < fontFamilies.Length; ++i)
-        //{
-        //    AddFontFamily(fontFamilies[i].Name);
-        //}
-    }
-
-    private void MainWindow_DragOver(object sender, DragEventArgs e)
-    {
-        // Check if the item being dragged contains files
-        if (e.DataView.Contains(Windows.ApplicationModel.DataTransfer.StandardDataFormats.StorageItems)) {
-            e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy;
-            e.DragUIOverride.Caption = "Drop to add font";
-            e.DragUIOverride.IsCaptionVisible = true;
-        } else {
-            e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.None;
-        }
-    }
-
-    private sealed record AppSettings(string[] FontFamilies, string DefaultFontFamily)
+    private sealed record AppSettings(string[] UsingFontFamilies, string[]StandbyFontFamilies, string DefaultFontFamily)
     {
         public static AppSettings Default { get; } = new(
         [
@@ -379,6 +416,7 @@ public sealed partial class MainWindow : Window
             "Georgia",
             "Times New Roman"
         ],
+        [],
         "Segoe UI"
         );
     }
@@ -479,7 +517,7 @@ public sealed class NoteItem : INotifyPropertyChanged
         get
         {
             var preview = Text.Replace(Environment.NewLine, " ").Trim();
-            return string.IsNullOrWhiteSpace(preview) ? "No text" : preview;
+            return string.IsNullOrWhiteSpace(preview) ? "" : preview;
         }
     }
 
