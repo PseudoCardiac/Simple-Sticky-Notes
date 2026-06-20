@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "V7xO2SctT68=",
+  "dgSpecHash": "eComUlHk420=",
   "success": true,
-  "projectFilePath": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\SimpleStickyNotes.csproj",
+  "projectFilePath": "C:\\Users\\nooye\\Desktop\\Codes\\Simple-Sticky-Notes\\SimpleStickyNotes.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nooye\\.nuget\\packages\\microsoft.web.webview2\\1.0.3179.45\\microsoft.web.webview2.1.0.3179.45.nupkg.sha512",
     "C:\\Users\\nooye\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.26100.4654\\microsoft.windows.sdk.buildtools.10.0.26100.4654.nupkg.sha512",

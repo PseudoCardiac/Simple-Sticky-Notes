@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\SimpleStickyNotes.csproj": {}
+    "C:\\Users\\nooye\\Desktop\\Codes\\Simple-Sticky-Notes\\SimpleStickyNotes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\SimpleStickyNotes.csproj": {
+    "C:\\Users\\nooye\\Desktop\\Codes\\Simple-Sticky-Notes\\SimpleStickyNotes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\SimpleStickyNotes.csproj",
+        "projectUniqueName": "C:\\Users\\nooye\\Desktop\\Codes\\Simple-Sticky-Notes\\SimpleStickyNotes.csproj",
         "projectName": "SimpleStickyNotes",
-        "projectPath": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\SimpleStickyNotes.csproj",
+        "projectPath": "C:\\Users\\nooye\\Desktop\\Codes\\Simple-Sticky-Notes\\SimpleStickyNotes.csproj",
         "packagesPath": "C:\\Users\\nooye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nooye\\Documents\\Codex\\2026-06-15\\11-ui-winui\\outputs\\SimpleStickyNotes\\obj\\",
+        "outputPath": "C:\\Users\\nooye\\Desktop\\Codes\\Simple-Sticky-Notes\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
