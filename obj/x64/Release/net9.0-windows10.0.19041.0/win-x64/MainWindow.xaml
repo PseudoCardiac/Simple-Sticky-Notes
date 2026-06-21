@@ -52,44 +52,48 @@
                                 <Setter Property="MaxWidth" Value="Infinity" />
                             </Style>
                         </Flyout.FlyoutPresenterStyle>
-                        
-                        <StackPanel Orientation="Horizontal" Spacing="16">
-                            <StackPanel Orientation="Vertical" Spacing="16">
-                                <TextBlock Text="Using" />
-                                <ListView x:ConnectionId='16'
-                                x:Name="UsingFontList" 
-                                Grid.Column="0"
-                                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                Width="200"
-                                Height="400"
-                                SelectionMode="Extended"
-                                                                            
-                                                                                     
-                                CanDragItems="True"
-                                                            
-                                                                              
+                        <StackPanel Orientation="Vertical" Spacing="16">
+                            <StackPanel Orientation="Horizontal" Spacing="16">
+                                <StackPanel Orientation="Vertical" Spacing="16">
+                                    <TextBlock Text="Selected Fonts" />
+                                    <ListView x:ConnectionId='16'
+                                    x:Name="UsingFontList" 
+                                    Grid.Column="0"
+                                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                    Width="200"
+                                    Height="400"
+                                    SelectionMode="Extended"
                                                                                 
-                                                    
-                                AllowDrop="True"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Spacing="16">
-                                <TextBlock Text="Installed" />
-                                <ListView x:ConnectionId='15'
-                                x:Name="AllFontList"
-                                Grid.Column="1"
-                                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                Width="200"
-                                Height="400"
-                                SelectionMode="Extended"
-                                                                            
-                                                                                       
-                                CanDragItems="True"
-                                                            
-                                                                              
+                                                                                         
+                                    CanDragItems="True"
+                                                                
+                                                                                  
+                                                                                    
+                                                        
+                                    AllowDrop="True"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Spacing="16">
+                                    <TextBlock Text="Installed Fonts" />
+                                    <ListView x:ConnectionId='15'
+                                    x:Name="StandbyFontList"
+                                    Grid.Column="1"
+                                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                    Width="200"
+                                    Height="400"
+                                    SelectionMode="Extended"
                                                                                 
-                                                    
-                                AllowDrop="True"/>
+                                                                                           
+                                    CanDragItems="True"
+                                                                
+                                                                                  
+                                                                                    
+                                                        
+                                    AllowDrop="True"/>
+                                </StackPanel>
                             </StackPanel>
+                            <TextBlock
+                                Text="Hint: The bottom-most selected font is the default font."
+                                Foreground="{ThemeResource TextFillColorTertiaryBrush}" />
                         </StackPanel>
                             
                     </Flyout>
@@ -140,6 +144,9 @@
                                     Grid.Column="0"
                                                                                 
                                                                                  
+                                                                               
+                                                                                 
+                                                                                   
                                     FontSize="18"
                                     MaxLines="2"
                                     Padding="16"

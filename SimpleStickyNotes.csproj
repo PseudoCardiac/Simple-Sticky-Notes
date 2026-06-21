@@ -13,10 +13,10 @@
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <Nullable>enable</Nullable>
     <EnableMsixTooling>true</EnableMsixTooling>
-    <ApplicationIcon>SimpleStickyNotes.ico</ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="SimpleStickyNotes.ico" />
+    <Content Include="icon.ico" />
   </ItemGroup>
 
   <ItemGroup>

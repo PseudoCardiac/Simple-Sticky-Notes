@@ -226,7 +226,7 @@ namespace XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo
         
         private void InitTypeTables()
         {
-            _typeNameTable = new string[20];
+            _typeNameTable = new string[21];
             _typeNameTable[0] = "Microsoft.UI.Xaml.Controls.XamlControlsResources";
             _typeNameTable[1] = "Microsoft.UI.Xaml.ResourceDictionary";
             _typeNameTable[2] = "Object";
@@ -244,11 +244,12 @@ namespace XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo
             _typeNameTable[14] = "Microsoft.UI.Xaml.Controls.Orientation";
             _typeNameTable[15] = "System.Nullable`1<Windows.UI.Color>";
             _typeNameTable[16] = "SimpleStickyNotes.NoteWindow";
-            _typeNameTable[17] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
-            _typeNameTable[18] = "Microsoft.UI.Xaml.DependencyObject";
-            _typeNameTable[19] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
+            _typeNameTable[17] = "String";
+            _typeNameTable[18] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
+            _typeNameTable[19] = "Microsoft.UI.Xaml.DependencyObject";
+            _typeNameTable[20] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
 
-            _typeTable = new global::System.Type[20];
+            _typeTable = new global::System.Type[21];
             _typeTable[0] = typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources);
             _typeTable[1] = typeof(global::Microsoft.UI.Xaml.ResourceDictionary);
             _typeTable[2] = typeof(global::System.Object);
@@ -266,9 +267,10 @@ namespace XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo
             _typeTable[14] = typeof(global::Microsoft.UI.Xaml.Controls.Orientation);
             _typeTable[15] = typeof(global::System.Nullable<global::Windows.UI.Color>);
             _typeTable[16] = typeof(global::SimpleStickyNotes.NoteWindow);
-            _typeTable[17] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
-            _typeTable[18] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
-            _typeTable[19] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
+            _typeTable[17] = typeof(global::System.String);
+            _typeTable[18] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
+            _typeTable[19] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
+            _typeTable[20] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -306,7 +308,7 @@ namespace XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo
         private object Activate_0_XamlControlsResources() { return new global::Microsoft.UI.Xaml.Controls.XamlControlsResources(); }
         private object Activate_4_MainWindow() { return new global::SimpleStickyNotes.MainWindow(); }
         private object Activate_6_ColorPicker() { return new global::Microsoft.UI.Xaml.Controls.ColorPicker(); }
-        private object Activate_17_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
+        private object Activate_18_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
         private void StaticInitializer_0_XamlControlsResources() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources).TypeHandle);
         private void StaticInitializer_4_MainWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::SimpleStickyNotes.MainWindow).TypeHandle);
         private void StaticInitializer_6_ColorPicker() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ColorPicker).TypeHandle);
@@ -317,8 +319,8 @@ namespace XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo
         private void StaticInitializer_12_ColorSpectrumComponents() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ColorSpectrumComponents).TypeHandle);
         private void StaticInitializer_15_Nullable() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Nullable<global::Windows.UI.Color>).TypeHandle);
         private void StaticInitializer_16_NoteWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::SimpleStickyNotes.NoteWindow).TypeHandle);
-        private void StaticInitializer_17_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
-        private void StaticInitializer_19_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
+        private void StaticInitializer_18_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
+        private void StaticInitializer_20_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.Object, global::System.Object>)instance;
@@ -326,7 +328,7 @@ namespace XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo
             var newItem = (global::System.Object)item;
             collection.Add(newKey, newItem);
         }
-        private void VectorAdd_19_IList(object instance, object item)
+        private void VectorAdd_20_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.TreeViewNode>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)item;
@@ -465,14 +467,23 @@ namespace XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo
             case 16:   //  SimpleStickyNotes.NoteWindow
                 userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
                 userType.StaticInitializer = StaticInitializer_16_NoteWindow;
+                userType.AddMemberName("NoteFontFamily");
+                userType.AddMemberName("NoteFontWeight");
+                userType.AddMemberName("NoteFontStyle");
+                userType.AddMemberName("NoteFontStretch");
+                userType.AddMemberName("NoteFontSize");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 17:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
+            case 17:   //  String
+                xamlType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 18:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
                 userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_17_TreeViewNode;
-                userType.StaticInitializer = StaticInitializer_17_TreeViewNode;
+                userType.Activator = Activate_18_TreeViewNode;
+                userType.StaticInitializer = StaticInitializer_18_TreeViewNode;
                 userType.AddMemberName("Children");
                 userType.AddMemberName("Content");
                 userType.AddMemberName("Depth");
@@ -484,14 +495,14 @@ namespace XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 18:   //  Microsoft.UI.Xaml.DependencyObject
+            case 19:   //  Microsoft.UI.Xaml.DependencyObject
                 xamlType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 19:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
+            case 20:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
                 userType = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_19_IList;
-                userType.CollectionAdd = VectorAdd_19_IList;
+                userType.StaticInitializer = StaticInitializer_20_IList;
+                userType.CollectionAdd = VectorAdd_20_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
@@ -764,52 +775,102 @@ namespace XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo
             var that = (global::Microsoft.UI.Xaml.Controls.ColorPicker)instance;
             that.PreviousColor = (global::System.Nullable<global::Windows.UI.Color>)Value;
         }
-        private object get_21_TreeViewNode_Children(object instance)
+        private object get_21_NoteWindow_NoteFontFamily(object instance)
+        {
+            var that = (global::SimpleStickyNotes.NoteWindow)instance;
+            return that.NoteFontFamily;
+        }
+        private void set_21_NoteWindow_NoteFontFamily(object instance, object Value)
+        {
+            var that = (global::SimpleStickyNotes.NoteWindow)instance;
+            that.NoteFontFamily = (global::System.String)Value;
+        }
+        private object get_22_NoteWindow_NoteFontWeight(object instance)
+        {
+            var that = (global::SimpleStickyNotes.NoteWindow)instance;
+            return that.NoteFontWeight;
+        }
+        private void set_22_NoteWindow_NoteFontWeight(object instance, object Value)
+        {
+            var that = (global::SimpleStickyNotes.NoteWindow)instance;
+            that.NoteFontWeight = (global::System.String)Value;
+        }
+        private object get_23_NoteWindow_NoteFontStyle(object instance)
+        {
+            var that = (global::SimpleStickyNotes.NoteWindow)instance;
+            return that.NoteFontStyle;
+        }
+        private void set_23_NoteWindow_NoteFontStyle(object instance, object Value)
+        {
+            var that = (global::SimpleStickyNotes.NoteWindow)instance;
+            that.NoteFontStyle = (global::System.String)Value;
+        }
+        private object get_24_NoteWindow_NoteFontStretch(object instance)
+        {
+            var that = (global::SimpleStickyNotes.NoteWindow)instance;
+            return that.NoteFontStretch;
+        }
+        private void set_24_NoteWindow_NoteFontStretch(object instance, object Value)
+        {
+            var that = (global::SimpleStickyNotes.NoteWindow)instance;
+            that.NoteFontStretch = (global::System.String)Value;
+        }
+        private object get_25_NoteWindow_NoteFontSize(object instance)
+        {
+            var that = (global::SimpleStickyNotes.NoteWindow)instance;
+            return that.NoteFontSize;
+        }
+        private void set_25_NoteWindow_NoteFontSize(object instance, object Value)
+        {
+            var that = (global::SimpleStickyNotes.NoteWindow)instance;
+            that.NoteFontSize = (global::System.Int32)Value;
+        }
+        private object get_26_TreeViewNode_Children(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Children;
         }
-        private object get_22_TreeViewNode_Content(object instance)
+        private object get_27_TreeViewNode_Content(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Content;
         }
-        private void set_22_TreeViewNode_Content(object instance, object Value)
+        private void set_27_TreeViewNode_Content(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.Content = (global::System.Object)Value;
         }
-        private object get_23_TreeViewNode_Depth(object instance)
+        private object get_28_TreeViewNode_Depth(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Depth;
         }
-        private object get_24_TreeViewNode_HasChildren(object instance)
+        private object get_29_TreeViewNode_HasChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.HasChildren;
         }
-        private object get_25_TreeViewNode_HasUnrealizedChildren(object instance)
+        private object get_30_TreeViewNode_HasUnrealizedChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.HasUnrealizedChildren;
         }
-        private void set_25_TreeViewNode_HasUnrealizedChildren(object instance, object Value)
+        private void set_30_TreeViewNode_HasUnrealizedChildren(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.HasUnrealizedChildren = (global::System.Boolean)Value;
         }
-        private object get_26_TreeViewNode_IsExpanded(object instance)
+        private object get_31_TreeViewNode_IsExpanded(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.IsExpanded;
         }
-        private void set_26_TreeViewNode_IsExpanded(object instance, object Value)
+        private void set_31_TreeViewNode_IsExpanded(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.IsExpanded = (global::System.Boolean)Value;
         }
-        private object get_27_TreeViewNode_Parent(object instance)
+        private object get_32_TreeViewNode_Parent(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Parent;
@@ -969,50 +1030,80 @@ namespace XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo
                 xamlMember.Getter = get_20_ColorPicker_PreviousColor;
                 xamlMember.Setter = set_20_ColorPicker_PreviousColor;
                 break;
+            case "SimpleStickyNotes.NoteWindow.NoteFontFamily":
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SimpleStickyNotes.NoteWindow");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "NoteFontFamily", "String");
+                xamlMember.Getter = get_21_NoteWindow_NoteFontFamily;
+                xamlMember.Setter = set_21_NoteWindow_NoteFontFamily;
+                break;
+            case "SimpleStickyNotes.NoteWindow.NoteFontWeight":
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SimpleStickyNotes.NoteWindow");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "NoteFontWeight", "String");
+                xamlMember.Getter = get_22_NoteWindow_NoteFontWeight;
+                xamlMember.Setter = set_22_NoteWindow_NoteFontWeight;
+                break;
+            case "SimpleStickyNotes.NoteWindow.NoteFontStyle":
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SimpleStickyNotes.NoteWindow");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "NoteFontStyle", "String");
+                xamlMember.Getter = get_23_NoteWindow_NoteFontStyle;
+                xamlMember.Setter = set_23_NoteWindow_NoteFontStyle;
+                break;
+            case "SimpleStickyNotes.NoteWindow.NoteFontStretch":
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SimpleStickyNotes.NoteWindow");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "NoteFontStretch", "String");
+                xamlMember.Getter = get_24_NoteWindow_NoteFontStretch;
+                xamlMember.Setter = set_24_NoteWindow_NoteFontStretch;
+                break;
+            case "SimpleStickyNotes.NoteWindow.NoteFontSize":
+                userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("SimpleStickyNotes.NoteWindow");
+                xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "NoteFontSize", "Int32");
+                xamlMember.Getter = get_25_NoteWindow_NoteFontSize;
+                xamlMember.Setter = set_25_NoteWindow_NoteFontSize;
+                break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Children":
                 userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Children", "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>");
-                xamlMember.Getter = get_21_TreeViewNode_Children;
+                xamlMember.Getter = get_26_TreeViewNode_Children;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Content":
                 userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Content", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_22_TreeViewNode_Content;
-                xamlMember.Setter = set_22_TreeViewNode_Content;
+                xamlMember.Getter = get_27_TreeViewNode_Content;
+                xamlMember.Setter = set_27_TreeViewNode_Content;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Depth":
                 userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Depth", "Int32");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_23_TreeViewNode_Depth;
+                xamlMember.Getter = get_28_TreeViewNode_Depth;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasChildren":
                 userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "HasChildren", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_24_TreeViewNode_HasChildren;
+                xamlMember.Getter = get_29_TreeViewNode_HasChildren;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasUnrealizedChildren":
                 userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "HasUnrealizedChildren", "Boolean");
-                xamlMember.Getter = get_25_TreeViewNode_HasUnrealizedChildren;
-                xamlMember.Setter = set_25_TreeViewNode_HasUnrealizedChildren;
+                xamlMember.Getter = get_30_TreeViewNode_HasUnrealizedChildren;
+                xamlMember.Setter = set_30_TreeViewNode_HasUnrealizedChildren;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.IsExpanded":
                 userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "IsExpanded", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_26_TreeViewNode_IsExpanded;
-                xamlMember.Setter = set_26_TreeViewNode_IsExpanded;
+                xamlMember.Getter = get_31_TreeViewNode_IsExpanded;
+                xamlMember.Setter = set_31_TreeViewNode_IsExpanded;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Parent":
                 userType = (global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::XamlDefaultRootNamespace.SimpleStickyNotes_XamlTypeInfo.XamlMember(this, "Parent", "Microsoft.UI.Xaml.Controls.TreeViewNode");
-                xamlMember.Getter = get_27_TreeViewNode_Parent;
+                xamlMember.Getter = get_32_TreeViewNode_Parent;
                 xamlMember.SetIsReadOnly();
                 break;
             }
