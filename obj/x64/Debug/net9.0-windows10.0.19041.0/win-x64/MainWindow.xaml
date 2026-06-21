@@ -75,7 +75,7 @@
                             <StackPanel Orientation="Vertical" Spacing="16">
                                 <TextBlock Text="Installed" />
                                 <ListView x:ConnectionId='15'
-                                x:Name="AllFontList"
+                                x:Name="StandbyFontList"
                                 Grid.Column="1"
                                 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                                 Width="200"
@@ -140,6 +140,9 @@
                                     Grid.Column="0"
                                                                                 
                                                                                  
+                                                                               
+                                                                                 
+                                                                                   
                                     FontSize="18"
                                     MaxLines="2"
                                     Padding="16"

@@ -4,7 +4,9 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Windows.Graphics;
 using Windows.UI;
@@ -12,7 +14,7 @@ using Windows.UI;
 namespace SimpleStickyNotes;
 
 
-public sealed partial class NoteWindow : Window
+public sealed partial class NoteWindow : Window, INotifyPropertyChanged
 {
     private readonly NoteItem _note;
     private readonly Func<IReadOnlyList<string>> _getFontFamilies;
@@ -25,6 +27,12 @@ public sealed partial class NoteWindow : Window
     private SolidColorBrush backgroundBrush;
     private SolidColorBrush textBrush;
 
+    private string _fontFamily;
+    private string _fontWeight;
+    private string _fontStyle;
+    private string _fontStretch;
+    private int _fontSize;
+
     public NoteWindow(
         NoteItem note,
         Func<IReadOnlyList<string>> getFontFamilies,
@@ -36,13 +44,18 @@ public sealed partial class NoteWindow : Window
         _saveNotes = saveNotes;
         _showListWindow = showListWindow;
 
+        _fontFamily = note.FontFamily;
+        _fontWeight = note.FontWeight;
+        _fontStyle = note.FontStyle;
+        _fontStretch = note.FontStretch;
+        _fontSize = note.FontSize;
+
         backgroundBrush = new();
         textBrush = new();
 
         InitializeComponent();
-        SetSliderValue();
         ExtendsContentIntoTitleBar = true;
-        BuildContextMenu();
+        BuildFontMenu();
         HideTitleBar();
         ResizeWindow(400, 400);
         LoadNote();
@@ -52,12 +65,75 @@ public sealed partial class NoteWindow : Window
         SetBackgroundColor();
         SetTextColor(IsLight(_note.BackgroundColor));
     }
-
-    private void SetSliderValue()
+    public event PropertyChangedEventHandler? PropertyChanged;
+    private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
-        FontSizeSlider.ValueChanged -= FontSizeSlider_ValueChanged;
-        FontSizeSlider.Value = _note.FontSize;
-        FontSizeSlider.ValueChanged += FontSizeSlider_ValueChanged;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+    public string NoteFontFamily
+    {
+        get => _fontFamily;
+        set
+        {
+            if (_fontFamily == value) {
+                return;
+            }
+
+            _fontFamily = value;
+            OnPropertyChanged();
+        }
+    }
+    public string NoteFontWeight
+    {
+        get => _fontWeight;
+        set
+        {
+            if (_fontWeight == value) {
+                return;
+            }
+
+            _fontWeight = value;
+            OnPropertyChanged();
+        }
+    }
+    public string NoteFontStyle
+    {
+        get => _fontStyle;
+        set
+        {
+            if (_fontStyle == value) {
+                return;
+            }
+
+            _fontStyle = value;
+            OnPropertyChanged();
+        }
+    }
+    public string NoteFontStretch
+    {
+        get => _fontStretch;
+        set
+        {
+            if (_fontStretch == value) {
+                return;
+            }
+
+            _fontStretch = value;
+            OnPropertyChanged();
+        }
+    }
+    public int NoteFontSize
+    {
+        get => _fontSize;
+        set
+        {
+            if (Math.Abs(_fontSize - value) < 0.01) {
+                return;
+            }
+
+            _fontSize = Math.Clamp(value, 24, 144);
+            OnPropertyChanged();
+        }
     }
 
     public static byte[] HexToBytes(string hex)
@@ -90,26 +166,84 @@ public sealed partial class NoteWindow : Window
     public void RefreshFonts()
     {
         FontMenu.Items.Clear();
-        BuildFontMenu(FontMenu);
+        BuildFontMenu();
     }
 
-    private void BuildContextMenu()
+    private readonly List<string> _fontWeights = [
+        "Thin",
+        "ExtraLight",
+        "Light",
+        "SemiLight",
+        "Normal",
+        "Medium",
+        "SemiBold",
+        "Bold",
+        "ExtraBold",
+        "Black",
+        "ExtraBlack"
+    ];
+    private readonly List<string> _fontStyles = [
+        "Normal",
+        "Italic",
+        "Oblique"
+    ];
+    private readonly List<string> _fontStretches = [
+        "UltraCondensed",
+        "ExtraCondensed",
+        "Condensed",
+        "SemiCondensed",
+        "Normal",
+        "SemiExpanded",
+        "Expanded",
+        "ExtraExpanded",
+        "UltraExpanded"
+    ];
+    private void BuildFontMenu()
     {
-        BuildFontMenu(FontMenu);
-    }
+        FontMenu.Items.Clear();
 
-    private void BuildFontMenu(MenuFlyout fontMenu)
-    {
-        foreach (var fontFamily in _getFontFamilies()) {
-            var item = new RadioMenuFlyoutItem { Text = GetFontDisplayName(fontFamily), Tag = fontFamily };
+        var fontWeightMenu = new MenuFlyoutSubItem() { Name = "FontWeightMenu", Text = "Font Weight" };
+        var fontStyleMenu = new MenuFlyoutSubItem() { Name = "FontStyleMenu", Text = "Font Style" };
+        var fontStretchMenu = new MenuFlyoutSubItem() { Name = "FontStretchMenu", Text = "Font Stretch" };
+
+        FontMenu.Items.Add(fontWeightMenu);
+        FontMenu.Items.Add(fontStyleMenu);
+        FontMenu.Items.Add(fontStretchMenu);
+        FontMenu.Items.Add(new MenuFlyoutSeparator());
+
+        foreach (string fontWeight in _fontWeights)
+        {
+            RadioMenuFlyoutItem item = new() { Text = fontWeight, Tag = "fontWeight" };
+            item.Click += FontMenuItem_Click;
+
+            if (_note.FontWeight == fontWeight) item.IsChecked = true;
+
+            fontWeightMenu.Items.Add(item);
+        }
+        foreach (string fontStyle in _fontStyles) {
+            RadioMenuFlyoutItem item = new() { Text = fontStyle, Tag = "fontStyle" };
+            item.Click += FontMenuItem_Click;
+
+            if (_note.FontStyle == fontStyle) item.IsChecked = true;
+
+            fontStyleMenu.Items.Add(item);
+        }
+        foreach (string fontStretch in _fontStretches) {
+            RadioMenuFlyoutItem item = new() { Text = fontStretch, Tag = "fontStretch" };
+            item.Click += FontMenuItem_Click;
+
+            if (_note.FontWeight == fontStretch) item.IsChecked = true;
+
+            fontStretchMenu.Items.Add(item);
+        }
+        foreach (string fontFamily in _getFontFamilies())
+        {
+            var item = new RadioMenuFlyoutItem { Text = fontFamily, Tag = "fontFamily" };
             item.Click += FontMenuItem_Click;
             
-            if (_note.FontFamily == fontFamily)
-            {
-                item.IsChecked = true;
-            }
+            if (_note.FontFamily == fontFamily) item.IsChecked = true;
 
-            fontMenu.Items.Add(item);
+            FontMenu.Items.Add(item);
         }
     }
 
@@ -118,32 +252,18 @@ public sealed partial class NoteWindow : Window
         _isLoading = true;
         NoteBox.Text = _note.Text;
         FontSizeSlider.Value = Math.Clamp(_note.FontSize, 24, 144);
-        ApplyFont(_note.FontFamily, _note.FontSize);
+        BuildFontMenu();
+        ApplyFont();
         _isLoading = false;
     }
 
-    private void ApplyFont(string fontFamily, int fontSize)
+    private void ApplyFont()
     {
-        var families = _getFontFamilies();
-        if (families.Count > 0 && !families.Contains(fontFamily)) {
-            fontFamily = families[0];
-            _note.FontFamily = fontFamily;
-        }
-
-        if (string.IsNullOrWhiteSpace(fontFamily)) {
-            fontFamily = "Segoe UI";
-        }
-
-        NoteBox.FontFamily = new FontFamily(fontFamily);
-        NoteBox.FontSize = Math.Clamp(fontSize, 24, 144);
-    }
-
-    private static string GetFontDisplayName(string fontFamily)
-    {
-        var markerIndex = fontFamily.LastIndexOf('#');
-        return markerIndex >= 0 && markerIndex < fontFamily.Length - 1
-            ? fontFamily[(markerIndex + 1)..]
-            : fontFamily;
+        _note.FontFamily = NoteFontFamily;
+        _note.FontWeight = NoteFontWeight;
+        _note.FontStyle = NoteFontStyle;
+        _note.FontStretch = NoteFontStretch;
+        _note.FontSize = NoteFontSize;
     }
 
     private void ResizeWindow(int width, int height)
@@ -215,12 +335,37 @@ public sealed partial class NoteWindow : Window
 
     private void FontMenuItem_Click(object sender, RoutedEventArgs e)
     {
-        if (_isTextLocked || sender is not MenuFlyoutItem { Tag: string fontFamily }) {
+        if (_isTextLocked || sender is not MenuFlyoutItem { Tag: string tag }) {
             return;
         }
 
-        _note.FontFamily = fontFamily;
-        ApplyFont(_note.FontFamily, _note.FontSize);
+        var item = sender as MenuFlyoutItem;
+        if (item == null) return;
+
+        switch (item.Tag)
+        {
+            case "fontFamily":
+                NoteFontFamily = item.Text;
+                _note.FontFamily = NoteFontFamily;
+                break;
+
+            case "fontWeight":
+                NoteFontWeight = item.Text;
+                _note.FontWeight = NoteFontWeight;
+                break;
+
+            case "fontStyle":
+                NoteFontStyle = item.Text;
+                _note.FontStyle = NoteFontStyle;
+                break;
+
+            case "fontStretch":
+                NoteFontStretch = item.Text;
+                _note.FontStretch = NoteFontStretch;
+                break;
+        }
+
+        ApplyFont();
         _saveNotes();
     }
 
@@ -230,8 +375,8 @@ public sealed partial class NoteWindow : Window
             return;
         }
 
-        _note.FontSize = (int)e.NewValue;
-        ApplyFont(_note.FontFamily, _note.FontSize);
+        NoteFontSize = (int)e.NewValue;
+        ApplyFont();
         _saveNotes();
     }
 

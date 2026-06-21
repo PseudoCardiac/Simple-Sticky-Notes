@@ -36,7 +36,8 @@ public sealed partial class MainWindow : Window
 
     private InstalledFontCollection _installedFontCollection;
 
-    private ObservableCollection<string> _selectedFonts = [];
+    private ObservableCollection<string> _selectedUsingFonts = [];
+    private ObservableCollection<string> _selectedStandbyFonts = [];
     private ObservableCollection<string> _draggedFonts = [];
     private ListView? _sourceListView;
 
@@ -107,9 +108,15 @@ public sealed partial class MainWindow : Window
 
     private void LoadSettings()
     {
+        string prevFont = "";
+        string currFont = "";
         foreach (FontFamily family in _installedFontCollection.Families)
         {
-            StandbyFontFamilies.Add(family.Name);
+            currFont = FontObject.GetFontFamilyName(family);
+            if (prevFont == currFont) continue;
+
+            StandbyFontFamilies.Add(currFont);
+            prevFont = currFont;
         }
 
         foreach (var fontFamily in ReadSettings().UsingFontFamilies)
@@ -260,8 +267,18 @@ public sealed partial class MainWindow : Window
     {
         if (e.Items == null) return;
 
-        foreach (string selection in _selectedFonts) {
-            _draggedFonts.Add(selection);
+        _sourceListView = sender as ListView;
+        
+        if (_sourceListView == UsingFontList)
+        {
+            foreach (string selection in _selectedUsingFonts) {
+                _draggedFonts.Add(selection);
+            }
+        } else if (_sourceListView == StandbyFontList)
+        {
+            foreach (string selection in _selectedStandbyFonts) {
+                _draggedFonts.Add(selection);
+            }
         }
 
         string item = (string) e.Items[0];
@@ -269,7 +286,6 @@ public sealed partial class MainWindow : Window
             _draggedFonts.Add(item);
         }
 
-        _sourceListView = sender as ListView;
     }
 
     private void FontList_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
@@ -295,7 +311,7 @@ public sealed partial class MainWindow : Window
         var sourceCollection = _sourceListView.ItemsSource as ObservableCollection<string>;
         var targetCollection = targetListView.ItemsSource as ObservableCollection<string>;
 
-        if (sourceCollection == null || targetCollection == null) return;
+        if (sourceCollection == null || targetCollection == null || sourceCollection == targetCollection) return;
 
         foreach (string font in _draggedFonts)
         {
@@ -313,11 +329,25 @@ public sealed partial class MainWindow : Window
 
     private void FontList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        foreach (var item in e.AddedItems) {
-            if (item is string font) _selectedFonts.Add(font);
-        }
-        foreach (var item in e.RemovedItems) {
-            if (item is string font) _selectedFonts.Remove(font);
+        ListView? lv = sender as ListView;
+        if (lv == null) return;
+
+        if (lv == UsingFontList)
+        {
+            foreach (var item in e.AddedItems) {
+                if (item is string font) _selectedUsingFonts.Add(font);
+            }
+            foreach (var item in e.RemovedItems) {
+                if (item is string font) _selectedUsingFonts.Remove(font);
+            }
+        } else if (lv == StandbyFontList)
+        {
+            foreach (var item in e.AddedItems) {
+                if (item is string font) _selectedStandbyFonts.Add(font);
+            }
+            foreach (var item in e.RemovedItems) {
+                if (item is string font) _selectedStandbyFonts.Remove(font);
+            }
         }
     }
 
@@ -343,20 +373,26 @@ public sealed class NoteItem : INotifyPropertyChanged
 {
     private string _text;
     private string _fontFamily;
+    private string _fontWeight;
+    private string _fontStyle;
+    private string _fontStretch;
     private int _fontSize;
     private string _backgroundColor;
     private string _textColor;
 
     public NoteItem()
-        : this(string.Empty, "Segoe UI", 24, "#EBC91E")
+        : this(string.Empty, "Segoe UI", "Normal", "Normal", "Normal", 24, "#EBC91E")
     {
     }
 
-    public NoteItem(string text, string fontFamily, int fontSize, string backgroundColor)
+    public NoteItem(string text, string fontFamily, string fontWeight, string fontStyle, string fontStretch, int fontSize, string backgroundColor)
     {
         Id = Guid.NewGuid();
         _text = text;
         _fontFamily = string.IsNullOrWhiteSpace(fontFamily) ? "Segoe UI" : fontFamily;
+        _fontWeight = string.IsNullOrWhiteSpace(fontWeight) ? "Normal" : fontWeight;
+        _fontStyle = string.IsNullOrWhiteSpace(fontStyle) ? "Normal" : fontStyle;
+        _fontStretch = string.IsNullOrWhiteSpace(fontStretch) ? "Normal" : fontStretch;
         _fontSize = fontSize > 0 ? fontSize : 24;
         _backgroundColor = string.IsNullOrWhiteSpace(backgroundColor) ? "#EBC91E" : backgroundColor;
         _textColor = IsLight(backgroundColor) ? "#1A1A1A" : "#FFFFFF";
@@ -396,7 +432,48 @@ public sealed class NoteItem : INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+    public string FontWeight
+    {
+        get => _fontWeight;
+        set
+        {
+            if (_fontWeight == value)
+            {
+                return;
+            }
 
+            _fontWeight = value;
+            OnPropertyChanged();
+        }
+    }
+    public string FontStyle
+    {
+        get => _fontStyle;
+        set
+        {
+            if (_fontStyle == value)
+            {
+                return;
+            }
+
+            _fontStyle = value;
+            OnPropertyChanged();
+        }
+    }
+    public string FontStretch
+    {
+        get => _fontStretch;
+        set
+        {
+            if (_fontStretch == value)
+            {
+                return;
+            }
+
+            _fontStretch = value;
+            OnPropertyChanged();
+        }
+    }
     public int FontSize
     {
         get => _fontSize;

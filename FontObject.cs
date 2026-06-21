@@ -5,9 +5,9 @@ namespace SimpleStickyNotes
 {
     public class FontObject
     {
-        //private System.Windows.Media.FontFamily _wpfFamily;
+        //private System.Windows.Media.NoteFontFamily _wpfFamily;
         //public string Name { get; set; } = "Segoe UI";
-        //public FontObject(System.Drawing.FontFamily fontFamily)
+        //public FontObject(System.Drawing.NoteFontFamily fontFamily)
         public FontObject(System.Drawing.FontFamily fontFamily)
         {
             //_wpfFamily = new(fontFamily.Name);

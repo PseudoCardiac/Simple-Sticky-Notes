@@ -97,17 +97,21 @@
         <Grid Grid.Row="1">
             <TextBox
                 x:Name="NoteBox"
+                FontFamily="{x:Bind NoteFontFamily, Mode=OneWay}"
+                FontWeight="{x:Bind NoteFontWeight, Mode=OneWay}"
+                FontStyle="{x:Bind NoteFontStyle, Mode=OneWay}"
+                FontStretch="{x:Bind NoteFontStretch, Mode=OneWay}"
                 Foreground="#FFFFFF"
                 AcceptsReturn="True"
                 BorderThickness="0"
-                FontSize="18"
+                FontSize="{x:Bind NoteFontSize, Mode=OneWay}"
                 Padding="36, 36, 18, 0"
                 TextChanged="NoteBox_TextChanged"
                 TextWrapping="Wrap"
                 VerticalAlignment="Stretch"
                 VerticalContentAlignment="Top">
                 <TextBox.ContextFlyout>
-                    <MenuFlyout x:Name="FontMenu"/>
+                    <MenuFlyout x:Name="FontMenu" />
                 </TextBox.ContextFlyout>
                 <TextBox.Resources>
                     <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="{ThemeResource ApplicationPageBackgroundThemeBrush}" />

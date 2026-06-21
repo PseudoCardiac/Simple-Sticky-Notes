@@ -75,7 +75,7 @@
                             <StackPanel Orientation="Vertical" Spacing="16">
                                 <TextBlock Text="Installed" />
                                 <ListView
-                                x:Name="AllFontList"
+                                x:Name="StandbyFontList"
                                 Grid.Column="1"
                                 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                                 Width="200"
@@ -140,6 +140,9 @@
                                     Grid.Column="0"
                                     Foreground="{x:Bind TextColor, Mode=OneWay}"
                                     FontFamily="{x:Bind FontFamily, Mode=OneWay}"
+                                    FontStyle="{x:Bind FontStyle, Mode=OneWay}"
+                                    FontWeight="{x:Bind FontWeight, Mode=OneWay}"
+                                    FontStretch="{x:Bind FontStretch, Mode=OneWay}"
                                     FontSize="18"
                                     MaxLines="2"
                                     Padding="16"
