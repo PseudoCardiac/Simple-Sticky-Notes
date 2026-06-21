@@ -52,44 +52,48 @@
                                 <Setter Property="MaxWidth" Value="Infinity" />
                             </Style>
                         </Flyout.FlyoutPresenterStyle>
-                        
-                        <StackPanel Orientation="Horizontal" Spacing="16">
-                            <StackPanel Orientation="Vertical" Spacing="16">
-                                <TextBlock Text="Using" />
-                                <ListView
-                                x:Name="UsingFontList" 
-                                Grid.Column="0"
-                                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                Width="200"
-                                Height="400"
-                                SelectionMode="Extended"
-                                SelectionChanged="FontList_SelectionChanged"
-                                ItemsSource="{x:Bind UsingFontFamilies, Mode=OneWay}"
-                                CanDragItems="True"
-                                DragOver="FontList_DragOver"
-                                DragItemsStarting="FontList_DragItemsStarting"
-                                DragItemsCompleted="FontList_DragItemsCompleted"
-                                Drop="FontList_Drop"
-                                AllowDrop="True"/>
+                        <StackPanel Orientation="Vertical" Spacing="16">
+                            <StackPanel Orientation="Horizontal" Spacing="16">
+                                <StackPanel Orientation="Vertical" Spacing="16">
+                                    <TextBlock Text="Selected Fonts" />
+                                    <ListView
+                                    x:Name="UsingFontList" 
+                                    Grid.Column="0"
+                                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                    Width="200"
+                                    Height="400"
+                                    SelectionMode="Extended"
+                                    SelectionChanged="FontList_SelectionChanged"
+                                    ItemsSource="{x:Bind UsingFontFamilies, Mode=OneWay}"
+                                    CanDragItems="True"
+                                    DragOver="FontList_DragOver"
+                                    DragItemsStarting="FontList_DragItemsStarting"
+                                    DragItemsCompleted="FontList_DragItemsCompleted"
+                                    Drop="FontList_Drop"
+                                    AllowDrop="True"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Spacing="16">
+                                    <TextBlock Text="Installed Fonts" />
+                                    <ListView
+                                    x:Name="StandbyFontList"
+                                    Grid.Column="1"
+                                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                    Width="200"
+                                    Height="400"
+                                    SelectionMode="Extended"
+                                    SelectionChanged="FontList_SelectionChanged"
+                                    ItemsSource="{x:Bind StandbyFontFamilies, Mode=OneWay}"
+                                    CanDragItems="True"
+                                    DragOver="FontList_DragOver"
+                                    DragItemsStarting="FontList_DragItemsStarting"
+                                    DragItemsCompleted="FontList_DragItemsCompleted"
+                                    Drop="FontList_Drop"
+                                    AllowDrop="True"/>
+                                </StackPanel>
                             </StackPanel>
-                            <StackPanel Orientation="Vertical" Spacing="16">
-                                <TextBlock Text="Installed" />
-                                <ListView
-                                x:Name="StandbyFontList"
-                                Grid.Column="1"
-                                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                Width="200"
-                                Height="400"
-                                SelectionMode="Extended"
-                                SelectionChanged="FontList_SelectionChanged"
-                                ItemsSource="{x:Bind StandbyFontFamilies, Mode=OneWay}"
-                                CanDragItems="True"
-                                DragOver="FontList_DragOver"
-                                DragItemsStarting="FontList_DragItemsStarting"
-                                DragItemsCompleted="FontList_DragItemsCompleted"
-                                Drop="FontList_Drop"
-                                AllowDrop="True"/>
-                            </StackPanel>
+                            <TextBlock
+                                Text="Hint: The bottom-most selected font is the default font."
+                                Foreground="{ThemeResource TextFillColorTertiaryBrush}" />
                         </StackPanel>
                             
                     </Flyout>

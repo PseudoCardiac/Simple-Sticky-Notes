@@ -225,6 +225,7 @@ public sealed partial class MainWindow : Window
     private void NewNoteButton_Click(object sender, RoutedEventArgs e)
     {
         var note = new NoteItem();
+        note.FontFamily = UsingFontFamilies.Last();
         _notes.Insert(0, note);
         SaveNotes();
         OpenNote(note);
