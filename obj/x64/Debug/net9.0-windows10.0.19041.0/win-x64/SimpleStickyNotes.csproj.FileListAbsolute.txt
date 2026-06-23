@@ -366,7 +366,6 @@ C:\Users\nooye\Documents\Codex\2026-06-15\11-ui-winui\outputs\SimpleStickyNotes\
 C:\Users\nooye\Documents\Codex\2026-06-15\11-ui-winui\outputs\SimpleStickyNotes\obj\x64\Debug\net9.0-windows10.0.19041.0\win-x64\MultipleQualifiersPerDimensionFound.txt
 C:\Users\nooye\Documents\Codex\2026-06-15\11-ui-winui\outputs\SimpleStickyNotes\obj\x64\Debug\net9.0-windows10.0.19041.0\win-x64\SimpleStickyNotes.sourcelink.json
 C:\Users\nooye\Documents\Codex\2026-06-15\11-ui-winui\outputs\SimpleStickyNotes\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\SimpleStickyNotes.ico
-C:\Users\nooye\Desktop\Codes\Simple-Sticky-Notes\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\SimpleStickyNotes.ico
 C:\Users\nooye\Desktop\Codes\Simple-Sticky-Notes\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\CoreMessagingXP.dll
 C:\Users\nooye\Desktop\Codes\Simple-Sticky-Notes\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\dcompi.dll
 C:\Users\nooye\Desktop\Codes\Simple-Sticky-Notes\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\DirectML.dll
@@ -734,3 +733,4 @@ C:\Users\nooye\Desktop\Codes\Simple-Sticky-Notes\obj\x64\Debug\net9.0-windows10.
 C:\Users\nooye\Desktop\Codes\Simple-Sticky-Notes\obj\x64\Debug\net9.0-windows10.0.19041.0\win-x64\qualifiers.txt
 C:\Users\nooye\Desktop\Codes\Simple-Sticky-Notes\obj\x64\Debug\net9.0-windows10.0.19041.0\win-x64\qualifiers.txt.intermediate
 C:\Users\nooye\Desktop\Codes\Simple-Sticky-Notes\obj\x64\Debug\net9.0-windows10.0.19041.0\win-x64\MultipleQualifiersPerDimensionFound.txt
+C:\Users\nooye\Desktop\Codes\Simple-Sticky-Notes\bin\x64\Debug\net9.0-windows10.0.19041.0\win-x64\icon.ico

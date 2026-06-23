@@ -105,7 +105,8 @@
                 AcceptsReturn="True"
                 BorderThickness="0"
                                                              
-                Padding="36, 36, 18, 0"
+                Margin="36, 0, 36, 0"
+                Padding="0, 36, 0, 0"
                                                  
                 TextWrapping="Wrap"
                 VerticalAlignment="Stretch"

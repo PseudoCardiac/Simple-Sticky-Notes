@@ -33,6 +33,9 @@ public sealed partial class NoteWindow : Window, INotifyPropertyChanged
     private string _fontStretch;
     private int _fontSize;
 
+    private Thickness _topPadding;
+    private Thickness _noTopPadding;
+
     public NoteWindow(
         NoteItem note,
         Func<IReadOnlyList<string>> getFontFamilies,
@@ -49,6 +52,10 @@ public sealed partial class NoteWindow : Window, INotifyPropertyChanged
         _fontStyle = note.FontStyle;
         _fontStretch = note.FontStretch;
         _fontSize = note.FontSize;
+
+        _topPadding = new();
+        _noTopPadding = new();
+        _topPadding.Top = 50;
 
         backgroundBrush = new();
         textBrush = new();
@@ -304,6 +311,7 @@ public sealed partial class NoteWindow : Window, INotifyPropertyChanged
         FontSizeSlider.Visibility = _isTextLocked ? Visibility.Collapsed : Visibility.Visible;
         //LockedBodyDragRegion.Visibility = _isTextLocked ? Visibility.Visible : Visibility.Collapsed;
         LockIcon.Glyph = _isTextLocked ? "\uE72E" : "\uE785";
+        NoteBox.Padding = _isTextLocked ? _topPadding : _noTopPadding;
     }
     private void LockButton_Click(object sender, RoutedEventArgs e)
     {
