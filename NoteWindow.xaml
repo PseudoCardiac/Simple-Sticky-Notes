@@ -18,6 +18,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
@@ -72,15 +73,30 @@
                     </Flyout>
                 </Button.Flyout>
             </Button>
-            
+
+            <Button
+                x:Name="NewButton"
+                Grid.Column="2"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                Foreground="#1A1A1A"
+                BorderThickness="0"
+                Click="NewButton_Click">
+                <FontIcon
+                    x:Name="NewIcon"
+                    Glyph="&#xE710;" />
+            </Button>
+
             <Border
                 x:Name="LockedTitleDragRegion"
-                Grid.Column="2"
+                Grid.Column="3"
                 Background="Transparent"/>
 
             <Button
                 x:Name="CloseButton"
-                Grid.Column="3"
+                Grid.Column="4"
                 Width="32"
                 Height="32"
                 Padding="0"

@@ -19,6 +19,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <Button
@@ -103,10 +104,24 @@
             <Border
                 x:Name="LockedTitleDragRegion"
                 Grid.Column="2"/>
-
+            
             <Button
-                x:Name="CloseButton"
+                x:Name="MinimizeButton"
                 Grid.Column="3"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderThickness="0"
+                Click="MinimizeButton_Click">
+                <FontIcon
+                    x:Name="MinimizeIcon"
+                    Glyph="&#xE921;" />
+            </Button>
+
+        <Button
+                x:Name="CloseButton"
+                Grid.Column="4"
                 Width="32"
                 Height="32"
                 Padding="0"

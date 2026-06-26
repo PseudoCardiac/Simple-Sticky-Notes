@@ -19,6 +19,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <Button x:ConnectionId='10'
@@ -29,7 +30,7 @@
                 Background="Transparent"
                 BorderThickness="0"
                                            >
-                <FontIcon x:ConnectionId='17'
+                <FontIcon x:ConnectionId='19'
                     x:Name="NewIcon"
                     Glyph="&#xE710;" />
             </Button>
@@ -41,7 +42,7 @@
                 Padding="0"
                 Background="Transparent"
                 BorderThickness="0">
-                <FontIcon x:ConnectionId='14'
+                <FontIcon x:ConnectionId='16'
                     x:Name="FontIcon"
                     Glyph="&#xE8D2;" />
 
@@ -56,7 +57,7 @@
                             <StackPanel Orientation="Horizontal" Spacing="16">
                                 <StackPanel Orientation="Vertical" Spacing="16">
                                     <TextBlock Text="Selected Fonts" />
-                                    <ListView x:ConnectionId='16'
+                                    <ListView x:ConnectionId='18'
                                     x:Name="UsingFontList" 
                                     Grid.Column="0"
                                     Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
@@ -74,7 +75,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" Spacing="16">
                                     <TextBlock Text="Installed Fonts" />
-                                    <ListView x:ConnectionId='15'
+                                    <ListView x:ConnectionId='17'
                                     x:Name="StandbyFontList"
                                     Grid.Column="1"
                                     Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
@@ -103,17 +104,31 @@
             <Border x:ConnectionId='11'
                 x:Name="LockedTitleDragRegion"
                 Grid.Column="2"/>
-
+            
             <Button x:ConnectionId='12'
-                x:Name="CloseButton"
+                x:Name="MinimizeButton"
                 Grid.Column="3"
                 Width="32"
                 Height="32"
                 Padding="0"
                 Background="Transparent"
                 BorderThickness="0"
+                                            >
+                <FontIcon x:ConnectionId='15'
+                    x:Name="MinimizeIcon"
+                    Glyph="&#xE921;" />
+            </Button>
+
+        <Button x:ConnectionId='13'
+                x:Name="CloseButton"
+                Grid.Column="4"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderThickness="0"
                                          >
-                <FontIcon x:ConnectionId='13'
+                <FontIcon x:ConnectionId='14'
                     x:Name="CloseIcon"
                     Glyph="&#xF78A;" />
             </Button>

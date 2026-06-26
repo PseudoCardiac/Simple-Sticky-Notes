@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
+using Windows.ApplicationModel.Calls;
 using Windows.Graphics;
 using Windows.UI;
 
@@ -35,6 +36,8 @@ public sealed partial class NoteWindow : Window, INotifyPropertyChanged
 
     private Thickness _topPadding;
     private Thickness _noTopPadding;
+
+    public MainWindow? MainWindow;
 
     public NoteWindow(
         NoteItem note,
@@ -442,5 +445,17 @@ public sealed partial class NoteWindow : Window, INotifyPropertyChanged
         IconColor4.Color = textColor;
         IconColor5.Color = textColor;
         IconColor6.Color = textColor;
+    }
+
+    private void NewButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (MainWindow == null) { Close(); return; }
+
+        var note = new NoteItem();
+        note.MainWindow = MainWindow;
+        note.FontFamily = MainWindow.UsingFontFamilies.Last();
+        MainWindow._notes.Insert(0, note);
+        MainWindow.SaveNotes();
+        MainWindow.OpenNote(note);
     }
 }

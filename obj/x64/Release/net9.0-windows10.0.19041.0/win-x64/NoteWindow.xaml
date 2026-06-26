@@ -18,6 +18,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
@@ -42,7 +43,7 @@
                 Foreground="#1A1A1A"
                 BorderThickness="0"
                                        >
-                <FontIcon x:ConnectionId='27'
+                <FontIcon x:ConnectionId='29'
                     x:Name="PinIcon"
                     Glyph="&#xE718;" />
             </Button>
@@ -56,12 +57,12 @@
                 Background="Transparent"
                 Foreground="#1A1A1A"
                 BorderThickness="0">
-                <FontIcon x:ConnectionId='25'
+                <FontIcon x:ConnectionId='27'
                     x:Name="ColorIcon"
                     Glyph="&#xE790;" />
                 <Button.Flyout>
                     <Flyout ShouldConstrainToRootBounds="False">
-                        <ColorPicker x:ConnectionId='26' x:Name="ColorPicker"
+                        <ColorPicker x:ConnectionId='28' x:Name="ColorPicker"
                             ColorSpectrumShape="Ring"
                             IsMoreButtonVisible="False"
                             IsColorSliderVisible="True"
@@ -72,15 +73,30 @@
                     </Flyout>
                 </Button.Flyout>
             </Button>
-            
-            <Border x:ConnectionId='22'
-                x:Name="LockedTitleDragRegion"
+
+            <Button x:ConnectionId='22'
+                x:Name="NewButton"
                 Grid.Column="2"
+                Width="32"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                Foreground="#1A1A1A"
+                BorderThickness="0"
+                                       >
+                <FontIcon x:ConnectionId='26'
+                    x:Name="NewIcon"
+                    Glyph="&#xE710;" />
+            </Button>
+
+            <Border x:ConnectionId='23'
+                x:Name="LockedTitleDragRegion"
+                Grid.Column="3"
                 Background="Transparent"/>
 
-            <Button x:ConnectionId='23'
+            <Button x:ConnectionId='24'
                 x:Name="CloseButton"
-                Grid.Column="3"
+                Grid.Column="4"
                 Width="32"
                 Height="32"
                 Padding="0"
@@ -88,7 +104,7 @@
                 Foreground="#1A1A1A"
                 BorderThickness="0"
                                          >
-                <FontIcon x:ConnectionId='24'
+                <FontIcon x:ConnectionId='25'
                     x:Name="CloseIcon"
                     Glyph="&#xF78A;" />
             </Button>

@@ -28,7 +28,7 @@ public sealed partial class MainWindow : Window
     private static readonly string SettingsPath = Path.Combine(SettingsDirectory, "settings.json");
     private static readonly string FontsDirectory = Path.Combine(SettingsDirectory, "Fonts");
 
-    private readonly ObservableCollection<NoteItem> _notes = [];
+    public readonly ObservableCollection<NoteItem> _notes = [];
     private readonly Dictionary<Guid, NoteWindow> _openNoteWindows = [];
     public readonly ObservableCollection<string> UsingFontFamilies = [];
     public readonly ObservableCollection<string> StandbyFontFamilies = [];
@@ -200,7 +200,7 @@ public sealed partial class MainWindow : Window
     }
 
 
-    private void OpenNote(NoteItem note)
+    public void OpenNote(NoteItem note)
     {
         if (_openNoteWindows.TryGetValue(note.Id, out var existingWindow))
         {
@@ -208,7 +208,10 @@ public sealed partial class MainWindow : Window
             return;
         }
 
-        var noteWindow = new NoteWindow(note, GetFontFamilies, SaveNotes, ShowListWindow);
+        var noteWindow = new NoteWindow(note, GetFontFamilies, SaveNotes, ShowListWindow)
+        {
+            MainWindow = this
+        };
         _openNoteWindows[note.Id] = noteWindow;
         noteWindow.Closed += (_, _) => _openNoteWindows.Remove(note.Id);
         noteWindow.Activate();
@@ -225,6 +228,7 @@ public sealed partial class MainWindow : Window
     private void NewNoteButton_Click(object sender, RoutedEventArgs e)
     {
         var note = new NoteItem();
+        note.MainWindow = this;
         note.FontFamily = UsingFontFamilies.Last();
         _notes.Insert(0, note);
         SaveNotes();
@@ -352,6 +356,13 @@ public sealed partial class MainWindow : Window
         }
     }
 
+    private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (AppWindow.Presenter is OverlappedPresenter presenter) {
+            presenter.Minimize();
+        }
+    }
+
     private sealed record AppSettings(string[] UsingFontFamilies, string[]StandbyFontFamilies, string DefaultFontFamily)
     {
         public static AppSettings Default { get; } = new(
@@ -380,6 +391,7 @@ public sealed class NoteItem : INotifyPropertyChanged
     private int _fontSize;
     private string _backgroundColor;
     private string _textColor;
+    public MainWindow? MainWindow;
 
     public NoteItem()
         : this(string.Empty, "Segoe UI", "Normal", "Normal", "Normal", 24, "#EBC91E")
